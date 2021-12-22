@@ -1,2 +1,2 @@
 # cloud-server
-Multi-account instance allow users to interact with the twister network through web
+Multi-account instance allow users to interact with the twister network through web service.
