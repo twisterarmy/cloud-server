@@ -1,3 +1,3 @@
 <?php
 
-require(PROJECT_DIR . '/view/index.phtml');
+require(PROJECT_DIR . '/application/view/index.phtml');

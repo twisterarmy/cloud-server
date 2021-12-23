@@ -1,0 +1,36 @@
+<?php include(PROJECT_DIR . '/application/controller/common/header.php') ?>
+<div class="bg-c-2 bg-img-2 c-1 of-hidden">
+  <div class="mw-1024 mx-auto">
+    <div class="nav float-left h-48 lh-48">
+      <div class="px-16">
+        <a class="c-1 f-size-18" href="<?php echo PROJECT_HOST ?>">Twisterarmy <i><?php echo _('Cloud') ?></i></a>
+      </div>
+    </div>
+    <div class="nav bg-c-2 bg-img-2 float-right t-right h-48 lh-48">
+      <div class="px-16">
+        <a class="c-1 ml-16" href="https://github.com/twisterarmy/cloud-server" target="_blank"><i class="bi bi-github"></i></a>
+        <a class="c-1 ml-16" href="https://github.com/twisterarmy/cloud-server/issues" target="_blank"><i class="bi bi-question-circle"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mw-1024 mx-auto of-hidden">
+  <div class="mw-360 mx-auto my-100 bg-c-4 b-r-3 py-28 px-24">
+    <h1 class="f-size-20 f-normal mb-16"><?php echo _('Login') ?></h1>
+    <form action="login" name="login" method="POST">
+      <input type="text" name="userName" value="<?php echo $userName ?>" placeholder="<?php echo _('Username') ?>" class="input-text mb-22" />
+      <?php if ($errorUserName) { ?>
+      <div class="c-5 mb-22"><?php echo $errorUserName ?></div>
+      <?php } ?>
+      <input type="password" name="userPrivateKey" value="<?php echo $userPrivateKey ?>" placeholder="<?php echo _('Key') ?>" class="input-text mb-22" />
+      <?php if ($errorUserPrivateKey) { ?>
+      <div class="c-5 mb-22"><?php echo $errorUserPrivateKey ?></div>
+      <?php } ?>
+      <div class="mt-4">
+        <button type="submit" class="btn btn-1"><?php echo _('Enter') ?></button>
+        <a class="c-1 ml-16" href="register"><?php echo _('Register') ?></a>
+      </div>
+    </form>
+  </div>
+</div>
+<?php include(PROJECT_DIR . '/application/controller/common/footer.php') ?>
