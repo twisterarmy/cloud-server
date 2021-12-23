@@ -290,6 +290,10 @@ a.c-4:hover {
   margin-bottom: 16px
 }
 
+.mb-20 {
+  margin-bottom: 20px
+}
+
 .mb-22 {
   margin-bottom: 22px
 }
@@ -398,7 +402,7 @@ a.c-4:hover {
 /* forms */
 .input-text {
   width: 100%;
-  padding: 12px 16px;
+  padding: 11px 16px;
   border-radius: 3px;
 }
 
