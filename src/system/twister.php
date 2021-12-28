@@ -46,4 +46,35 @@ class Twister {
 
     return false;
   }
+
+  public function getBlockHash(int $number) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'getblockhash',
+        'params'  => [
+          $number
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result'];
+      }
+    }
+
+    return false;
+  }
 }
