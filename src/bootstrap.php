@@ -41,6 +41,11 @@ $_modelBlock = new ModelBlock(
   DB_PASSWORD
 );
 
+// Start session
+if (!session_id()) {
+     session_start();
+}
+
 // Route
 if (isset($_GET['_route_'])) {
 
@@ -50,6 +55,9 @@ if (isset($_GET['_route_'])) {
       break;
       case 'login':
         require(PROJECT_DIR . '/application/controller/login.php');
+      break;
+      case 'logout':
+        require(PROJECT_DIR . '/application/controller/logout.php');
       break;
       case 'register':
         require(PROJECT_DIR . '/application/controller/register.php');

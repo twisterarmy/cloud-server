@@ -61,8 +61,13 @@ if (isset($_POST) && $_POST) {
         // @TODO
 
         // Auth
+        if (!session_id()) {
+
+          $_SESSION['username'] = $userName;
+        }
 
         // Redirect
+        header('Location: ' . PROJECT_HOST, true, 302);
 
       } else {
 
