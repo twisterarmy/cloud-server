@@ -1,5 +1,10 @@
 <?php
 
-//require(PROJECT_DIR . '/application/view/index.phtml');
+if (!isset($_SESSION['username'])) {
 
-require(PROJECT_DIR . '/application/controller/login.php');
+  header('Location: ' . PROJECT_HOST . '/login', true, 302);
+}
+
+$metaTitle = _('Home | Twisterarmy Cloud');
+
+require(PROJECT_DIR . '/application/view/index.phtml');

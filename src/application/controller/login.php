@@ -7,6 +7,8 @@ $userPrivateKey      = false;
 $errorUserName       = false;
 $errorUserPrivateKey = false;
 
+$metaTitle = _('Login | Twisterarmy Cloud');
+
 // Process form request
 if (isset($_POST) && $_POST) {
 
