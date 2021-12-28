@@ -77,4 +77,35 @@ class Twister {
 
     return false;
   }
+
+  public function getBlock(string $hash) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'getblock',
+        'params'  => [
+          $hash
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result'];
+      }
+    }
+
+    return false;
+  }
 }
