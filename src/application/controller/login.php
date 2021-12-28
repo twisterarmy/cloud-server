@@ -54,7 +54,7 @@ if (isset($_POST) && $_POST) {
   if (!$errorUserName && !$errorUserPrivateKey) {
 
     // Check user exists
-    if ($_modelUserWallet->userNameExists($userName)) {
+    if ($_modelUser->userNameExists($userName)) {
 
       if ($_twister->importWallet($userName, $userPrivateKey)) {
 

@@ -1,6 +1,6 @@
 <?php
 
-class ModelUserWallet extends Model {
+class ModelUser extends Model {
 
   public function userNameExists(string $userName) {
 

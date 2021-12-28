@@ -4,7 +4,7 @@
 require('config.php');
 
 require(PROJECT_DIR . '/application/model/model.php');
-require(PROJECT_DIR . '/application/model/user/wallet.php');
+require(PROJECT_DIR . '/application/model/user.php');
 
 require(PROJECT_DIR . '/system/curl.php');
 require(PROJECT_DIR . '/system/twister.php');
@@ -23,7 +23,7 @@ $_twister = new Twister(
 );
 
 // Init models
-$_modelUserWallet = new ModelUserWallet(
+$_modelUser = new ModelUser(
   DB_DATABASE,
   DB_HOST,
   DB_PORT,
