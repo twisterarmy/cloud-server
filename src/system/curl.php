@@ -6,16 +6,19 @@ class Curl {
   private $_protocol;
   private $_host;
   private $_port;
+  private $_ssl;
 
   public function __construct(string $protocol,
                               string $host,
                               int    $port,
                               string $username,
-                              string $password) {
+                              string $password,
+                              bool   $ssl) {
 
     $this->_protocol = $protocol;
     $this->_host     = $host;
     $this->_port     = $port;
+    $this->_ssl      = $ssl;
 
     $this->_curl     = curl_init();
 
@@ -52,7 +55,7 @@ class Curl {
     curl_setopt($this->_curl, CURLOPT_CONNECTTIMEOUT, $timeout);
     curl_setopt($this->_curl, CURLOPT_TIMEOUT, $timeout);
 
-    if ($method == 'https') {
+    if ($this->_ssl) {
       curl_setopt($this->_curl, CURLOPT_SSL_VERIFYPEER, $validate);
       curl_setopt($this->_curl, CURLOPT_SSL_VERIFYHOST, $validate);
     }

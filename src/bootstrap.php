@@ -19,7 +19,8 @@ $_twister = new Twister(
     TWISTER_HOST,
     TWISTER_PORT,
     TWISTER_USER,
-    TWISTER_PASSWORD
+    TWISTER_PASSWORD,
+    TWISTER_SSL
   )
 );
 

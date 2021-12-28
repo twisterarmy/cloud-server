@@ -17,6 +17,7 @@ define('DB_PASSWORD', '');
 // TWISTER
 define('TWISTER_HOST', 'localhost');
 define('TWISTER_PORT', 28332);
+define('TWISTER_SSL', true);
 define('TWISTER_PROTOCOL', '');
 define('TWISTER_USER', '');
 define('TWISTER_PASSWORD', '');
