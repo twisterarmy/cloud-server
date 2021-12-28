@@ -13,40 +13,40 @@ if (isset($_POST) && $_POST) {
   // Validate userName
   if (!isset($_POST['userName'])) {
 
-    $errorUserName = _('Username value required!');
+    $errorUserName = _('Username value required.');
 
   } else {
 
     if (!Valid::userName($_POST['userName'])) {
 
-      $errorUserName = _('Username must contain a-z_0-9 up to 16 chars!');
+      $errorUserName = _('Username must contain a-z_0-9 up to 16 chars.');
     }
 
     $userName = Filter::userName($_POST['userName']);
 
     if (!$userName) {
 
-      $errorUserName = _('Username required!');
+      $errorUserName = _('Username required.');
     }
   }
 
   // Validate userPrivateKey
   if (!isset($_POST['userPrivateKey'])) {
 
-    $errorUserPrivateKey = _('Key value required!');
+    $errorUserPrivateKey = _('Key value required.');
 
   } else {
 
     if (!Valid::userPrivateKey($_POST['userPrivateKey'])) {
 
-      $errorUserPrivateKey = _('Key must contain a-z_0-9 chars!');
+      $errorUserPrivateKey = _('Key must contain a-z_0-9 chars.');
     }
 
     $userPrivateKey = Filter::userPrivateKey($_POST['userPrivateKey']);
 
     if (!$userPrivateKey) {
 
-      $errorUserPrivateKey = _('Private key required!');
+      $errorUserPrivateKey = _('Private key required.');
     }
   }
 
@@ -71,7 +71,7 @@ if (isset($_POST) && $_POST) {
 
     } else {
 
-      $errorUserName = _('Username not exists or pending for registration!');
+      $errorUserName = _('Username not exists or pending for registration.');
 
     }
   }
