@@ -4,6 +4,7 @@
 require('config.php');
 
 require(PROJECT_DIR . '/application/model/model.php');
+require(PROJECT_DIR . '/application/model/block.php');
 require(PROJECT_DIR . '/application/model/user.php');
 
 require(PROJECT_DIR . '/system/curl.php');
@@ -30,6 +31,16 @@ $_modelUser = new ModelUser(
   DB_USER,
   DB_PASSWORD
 );
+
+/*
+$_modelBlock = new ModelBlock(
+  DB_DATABASE,
+  DB_HOST,
+  DB_PORT,
+  DB_USER,
+  DB_PASSWORD
+);
+*/
 
 // Route
 if (isset($_GET['_route_'])) {
