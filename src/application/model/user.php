@@ -2,6 +2,21 @@
 
 class ModelUser extends Model {
 
+  public function getTotal() {
+
+    try {
+
+      $query = $this->_db->query("SELECT COUNT(*) AS `total` from `user`");
+
+      return $query->fetch()['total'];
+
+    } catch (PDOException $e) {
+
+      trigger_error($e->getMessage());
+      return false;
+    }
+  }
+
   public function userNameExists(string $userName) {
 
     try {
@@ -10,7 +25,7 @@ class ModelUser extends Model {
 
       $query->execute([$userName]);
 
-      return $query->rowCount() ? $query->fetch()['total'] : 0;
+      return $query->fetch()['total'];
 
     } catch (PDOException $e) {
 

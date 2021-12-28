@@ -2,6 +2,21 @@
 
 class ModelBlock extends Model {
 
+  public function getTotal() {
+
+    try {
+
+      $query = $this->_db->query("SELECT COUNT(*) AS `total` from `block`");
+
+      return $query->fetch()['total'];
+
+    } catch (PDOException $e) {
+
+      trigger_error($e->getMessage());
+      return false;
+    }
+  }
+
   public function getNextBlock() {
 
     try {

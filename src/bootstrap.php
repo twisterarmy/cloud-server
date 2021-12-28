@@ -33,7 +33,6 @@ $_modelUser = new ModelUser(
   DB_PASSWORD
 );
 
-/*
 $_modelBlock = new ModelBlock(
   DB_DATABASE,
   DB_HOST,
@@ -41,7 +40,6 @@ $_modelBlock = new ModelBlock(
   DB_USER,
   DB_PASSWORD
 );
-*/
 
 // Route
 if (isset($_GET['_route_'])) {
