@@ -18,4 +18,22 @@ class ModelUser extends Model {
       return false;
     }
   }
+
+  public function addUser(int $blockId, int $userName) {
+
+    try {
+
+      $query = $this->_db->prepare("INSERT INTO `user` SET `blockId` = ?,
+                                                           `userName` = ?");
+
+      $query->execute([$blockId, $userName]);
+
+      $this->_db->lastInsertId();
+
+    } catch (PDOException $e) {
+
+      trigger_error($e->getMessage());
+      return false;
+    }
+  }
 }
