@@ -19,7 +19,7 @@ class ModelUser extends Model {
     }
   }
 
-  public function addUser(int $blockId, int $userName) {
+  public function addUser(int $blockId, string $userName) {
 
     try {
 

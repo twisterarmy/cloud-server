@@ -17,7 +17,7 @@ class ModelBlock extends Model {
     }
   }
 
-  public function addBlock(int $hash, int $time) {
+  public function addBlock(string $hash, int $time) {
 
     try {
 
