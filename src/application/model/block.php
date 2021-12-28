@@ -26,7 +26,7 @@ class ModelBlock extends Model {
 
       $query->execute([$hash, $time]);
 
-      $this->_db->lastInsertId();
+      return $this->_db->lastInsertId();
 
     } catch (PDOException $e) {
 

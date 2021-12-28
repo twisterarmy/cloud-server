@@ -28,7 +28,7 @@ class ModelUser extends Model {
 
       $query->execute([$blockId, $userName]);
 
-      $this->_db->lastInsertId();
+      return $this->_db->lastInsertId();
 
     } catch (PDOException $e) {
 
