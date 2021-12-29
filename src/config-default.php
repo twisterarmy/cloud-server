@@ -21,3 +21,6 @@ define('TWISTER_SSL', true);
 define('TWISTER_PROTOCOL', '');
 define('TWISTER_USER', '');
 define('TWISTER_PASSWORD', '');
+
+// COMMON
+define('APPLICATION_ALLOW_REGISTRATION', true);
