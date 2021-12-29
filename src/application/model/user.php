@@ -6,7 +6,7 @@ class ModelUser extends Model {
 
     try {
 
-      $query = $this->_db->query("SELECT COUNT(*) AS `total` from `user`");
+      $query = $this->_db->query("SELECT COUNT(*) AS `total` FROM `user`");
 
       return $query->fetch()['total'];
 
@@ -21,11 +21,11 @@ class ModelUser extends Model {
 
     try {
 
-      $query = $this->_db->prepare("SELECT COUNT(*) AS `total` from `user` WHERE `userName` = ? LIMIT 1");
+      $query = $this->_db->prepare("SELECT `userId` FROM `user` WHERE `userName` = ? LIMIT 1");
 
       $query->execute([$userName]);
 
-      return $query->fetch()['total'];
+      return $query->rowCount() ? $query->fetch()['userId'] : 0;
 
     } catch (PDOException $e) {
 
