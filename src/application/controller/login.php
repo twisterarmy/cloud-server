@@ -65,13 +65,16 @@ if (isset($_POST) && $_POST) {
 
       if ($_twister->importWallet($userName, $userPrivateKey)) {
 
-        // @TODO
+        // @TODO: add login time
 
         // Auth
-        if (!session_id()) {
-
-          $_SESSION['username'] = $userName;
+        if (session_id()) {
+            session_destroy();
         }
+
+        session_start();
+
+        $_SESSION['username'] = $userName;
 
         // Redirect
         header('Location: ' . PROJECT_HOST, true, 302);
