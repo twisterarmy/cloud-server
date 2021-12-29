@@ -108,4 +108,66 @@ class Twister {
 
     return false;
   }
+
+  public function createWalletUser(string $userName) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'createwalletuser',
+        'params'  => [
+          $userName
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result'];
+      }
+    }
+
+    return false;
+  }
+
+  public function sendNewUserTransaction(string $userName) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'sendnewusertransaction',
+        'params'  => [
+          $userName
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result'];
+      }
+    }
+
+    return false;
+  }
 }
