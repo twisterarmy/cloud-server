@@ -152,7 +152,7 @@ final class Icon {
 
     for ($i = 0; $i < count($shape); $i++)
       $shape[$i] = $shape[$i] * $this->_spriteZ;
-    imagefilledpolygon($sprite, $shape, count($shape) / 2, $fg);
+    $this->_imageFilledPolygonWrapper($sprite, $shape, count($shape) / 2, $fg);
 
     for ($i = 0; $i < $rotation; $i++)
       $sprite = imagerotate($sprite, 90, $bg);
@@ -202,8 +202,29 @@ final class Icon {
     for ($i = 0; $i < count($shape); $i++)
       $shape[$i] = $shape[$i] * $this->_spriteZ;
     if (count($shape) > 0)
-      imagefilledpolygon($sprite, $shape, count($shape) / 2, $fg);
+      $this->_imageFilledPolygonWrapper($sprite, $shape, count($shape) / 2, $fg);
 
     return $sprite;
+  }
+
+  /**  PHP 8 solution by
+     * https://github.com/szymach/c-pchart/commit/69466bb53a05a78798941c6b11dd3e2c5774cdaa
+     * @param GdImage|resource $image
+     * @param array $points
+     * @param int $numPoints
+     * @param int $color
+     * @return void
+     */
+    private function _imageFilledPolygonWrapper(
+      $image,
+      array $points,
+      $numPoints,
+      $color
+  ) {
+      if (version_compare(PHP_VERSION, '8.1.0') === -1) {
+          imagefilledpolygon($image, $points, $numPoints, $color);
+      } else {
+          imagefilledpolygon($image, $points, $color);
+      }
   }
 }
