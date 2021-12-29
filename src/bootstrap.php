@@ -9,6 +9,7 @@ require(PROJECT_DIR . '/application/model/user.php');
 
 require(PROJECT_DIR . '/system/curl.php');
 require(PROJECT_DIR . '/system/twister.php');
+require(PROJECT_DIR . '/system/icon.php');
 require(PROJECT_DIR . '/system/helper/filter.php');
 require(PROJECT_DIR . '/system/helper/valid.php');
 
@@ -65,8 +66,8 @@ if (isset($_GET['_route_'])) {
       case 'register':
         require(PROJECT_DIR . '/application/controller/register.php');
       break;
-      case 'api/user':
-        require(PROJECT_DIR . '/application/controller/api/user.php');
+      case 'api/image':
+        require(PROJECT_DIR . '/application/controller/api/image.php');
       break;
       default:
         require(PROJECT_DIR . '/application/controller/error/404.php');
