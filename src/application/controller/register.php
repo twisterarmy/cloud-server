@@ -57,6 +57,11 @@ if (isset($_POST) && $_POST) {
       // Post new user public key to the network
       if ($transaction = $_twister->sendNewUserTransaction($userName)) {
 
+        // Auto follow users
+        if (APPLICATION_FOLLOW_ON_REGISTRATION){
+          $_twister->follow($userName, APPLICATION_FOLLOW_ON_REGISTRATION);
+        }
+
         // Prepare Welcome page
         $metaTitle = _('Welcome | Twisterarmy Cloud');
 
