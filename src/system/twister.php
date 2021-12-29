@@ -109,6 +109,137 @@ class Twister {
     return false;
   }
 
+  public function getPosts(string $userNameRecipient, string $userNameSender, int $limit) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'getposts',
+        'params'  => [
+          $limit,
+          [
+            ['username' => $userNameRecipient],
+            ['username' => $userNameSender],
+          ]
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result']; // Array
+      }
+    }
+
+    return false;
+  }
+
+  public function follow(string $userName, array $userNames) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'follow',
+        'params'  => [
+          $userName,
+          $userNames
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result'];
+      }
+    }
+
+    return false;
+  }
+
+  public function getFollowing(string $userName) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'getfollowing',
+        'params'  => [
+          $userName
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result']; // Array usernames
+      }
+    }
+
+    return false;
+  }
+
+  public function getDHT(string $userName, string $command, string $flag) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'dhtget',
+        'params'  => [
+          $userName,
+          $command,
+          $flag
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result']; // Array
+      }
+    }
+
+    return false;
+  }
+
   public function createWalletUser(string $userName) {
 
     $this->_curl->prepare(
