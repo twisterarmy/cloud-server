@@ -16,18 +16,16 @@ a:active {
   max-width: 1024px;
   margin: 16px auto;
   padding: 0 16px;
-  overflow: hidden
+  overflow: hidden;
+  position: relative
 }
 
 .container > .left {
-  float: left;
-  max-width: 420px;
-  padding-right: 10px
+  float: left
 }
 
 .container > .right {
-  float: left;
-  width: 60%
+  padding-left: 380px
 }
 
 .container {
@@ -102,13 +100,15 @@ a:active {
   /*background: rgba(255, 255, 255, 0.18);*/
   background: rgb(77, 86, 102);
   color: #dfe8f4;
-  outline: none
-
+  outline: none;
+  letter-spacing: 0.2px;
+  font-size: 13px;
+  border: 1px #181818 solid;
 }
 
 .container .post textarea:focus {
   height: 80px;
-  background: rgb(79, 90, 107);
+  background: rgb(87, 98, 117);
   /*background: rgb(103, 112, 126);*/
 }
 
@@ -136,13 +136,13 @@ a:active {
   padding: 16px;
   margin-bottom: 8px;
   /*background: rgba(101, 114, 134, 0.28);*/
-  background: rgba(255, 254, 254, 0.04);
+  /*background: rgba(255, 254, 254, 0.04);*/
   /*background: rgba(255, 255, 255, 0.18);*/
+  background: rgb(39, 46, 57);
   border-radius: 3px;
-  color: #dfe8f4;
-
+  color: #a5b2bd;
+  min-height: 84px;
 }
-
 
 .container .content .item .avatar {
   position: absolute;
@@ -156,5 +156,8 @@ a:active {
 }
 
 .container .content .item .message {
-  padding-left: 65px;
+  padding-left: 73px;
+  letter-spacing: 0.2px;
+  font-size: 13px;
+  padding-right: 8px;
 }
