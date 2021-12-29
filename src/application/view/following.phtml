@@ -9,13 +9,13 @@
         <?php if ($followingUsersTotal) { ?>
           <span><?php echo $followingUsersTotal ?></span>
         <?php } ?>
-      </a><a class="item" href="bookmarks" title="<?php echo _('Bookmarks') ?>">
+      </a><a class="item" href="#todo" title="<?php echo _('Bookmarks') ?>">
         <i class="bi bi-bookmarks"></i>
-      </a><a class="item" href="mentions" title="<?php echo _('Mentions') ?>">
+      </a><a class="item" href="#todo" title="<?php echo _('Mentions') ?>">
         <i class="bi bi-at"></i>
-      </a><a class="item" href="messages" title="<?php echo _('Messages') ?>">
+      </a><a class="item" href="#todo" title="<?php echo _('Messages') ?>">
         <i class="bi bi-envelope"></i>
-      </a><a class="item" href="settings" title="<?php echo _('Messages') ?>">
+      </a><a class="item" href="#todo" title="<?php echo _('Settings') ?>">
         <i class="bi bi-gear"></i>
       </a>
     </div>
@@ -25,10 +25,8 @@
           @<?php echo $followingUser['name'] ?>
         </div>
       <?php } ?>
+      <h2><?php echo _('Following suggestions') ?></h2>
     </div>
   </div>
   <div class="side"></div>
-</div>
-<div class="footer">
-  <?php include(PROJECT_DIR . '/application/controller/common/footer/user.php') ?>
 </div>

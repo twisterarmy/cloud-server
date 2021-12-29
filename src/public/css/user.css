@@ -19,44 +19,26 @@ a:active {
   overflow: hidden
 }
 
-.container .side  {
+.container > .left {
   float: left;
-  width: 30%;
-  padding-right: 16px
+  max-width: 420px;
+  padding-right: 10px
 }
 
-.container .side form input {
-  height: 36px;
-  width: 100%;
-  padding: 16px 8px;
-  border-radius: 3px;
-  margin-bottom: 16px;
-  font-family: Roboto-Regular, Sans-Serif, Verdana;
-  font-size: 14px;
-  background: rgb(56, 65, 78);
-  color: #dfe8f4;
-  outline: none;
-}
-
-.container .side .suggestions {
-  padding: 16px 8px;
-}
-
-.container .side .suggestions h4 {
-  text-align: center;
-  text-transform: uppercase
-}
-
-.container .main  {
+.container > .right {
   float: left;
-  width: 70%
+  width: 60%
 }
 
-.container .main .menu {
+.container {
+  margin-bottom: 64px
+}
+
+.container .menu {
   margin-bottom: 6px
 }
 
-.container .main .menu .item {
+.container .menu .item {
   display: inline-block;
   background: rgba(39, 46, 57, 0.28);
   /* background: rgba(101, 114, 134, 0.28); */
@@ -67,46 +49,70 @@ a:active {
   margin: 2px
 }
 
-.container .main .menu .item.active,
-.container .main .menu .item:hover {
+.container .menu .item.active,
+.container .menu .item:hover {
   background: #272E39;
 }
 
-.container .main .menu .item span {
+.container .menu .item span {
   font-size: 12px;
   margin: 0 8px
 }
 
-.container .main .post {
+.container .post {
   margin-bottom: 10px;
-  padding: 16px;
   background: #272E39;
   border-radius: 3px;
-  overflow: hidden
+  overflow: hidden;
+  position: relative;
 }
 
-.container .main .post textarea {
+.container .post .avatar {
+  position: absolute;
+  top: 19px;
+  left: 19px;
+}
+
+.container .post .avatar img {
+  border-radius: 50%;
+  border: 2px #fff solid;
+}
+
+.container .post .message {
+  padding-left: 82px;
+  padding-right: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.container .post .action {
+  border-top: 1px #4d5666 solid;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.container .post .message textarea {
   height: 52px;
   width: 100%;
   padding: 16px 8px;
   border-radius: 3px;
-  margin-bottom: 16px;
   font-family: Roboto-Regular, Sans-Serif, Verdana;
   font-size: 14px;
   /*background: rgba(101, 114, 134, 0.28);*/
-  background: rgba(255, 255, 255, 0.18);
+  /*background: rgba(255, 255, 255, 0.18);*/
+  background: rgb(77, 86, 102);
   color: #dfe8f4;
   outline: none
 
 }
 
-.container .main .post textarea:focus {
-  height: 120px;
-  /*background: rgb(79, 90, 107);*/
-  background: rgb(103, 112, 126);
+.container .post textarea:focus {
+  height: 80px;
+  background: rgb(79, 90, 107);
+  /*background: rgb(103, 112, 126);*/
 }
 
-.container .main .post button {
+.container .post button {
   float: right;
   padding: 8px 16px;
   border-radius: 3px;
@@ -116,26 +122,39 @@ a:active {
   border: 0
 }
 
-.container .main .post button:hover {
+.container .post button:hover {
   background-color: #437baa
 }
 
-.container .main .post .content {
+.container .post .content {
   background: rgb(89,99,116);
   border-radius: 3px;
   padding: 16px;
 }
 
-.container .main .content .item {
+.container .content .item {
   padding: 16px;
   margin-bottom: 8px;
   /*background: rgba(101, 114, 134, 0.28);*/
-  /*background: rgba(255, 254, 254, 0.04);*/
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 254, 254, 0.04);
+  /*background: rgba(255, 255, 255, 0.18);*/
   border-radius: 3px;
-  color: #dfe8f4
+  color: #dfe8f4;
+
 }
 
-.container .main .footer {
-  margin: 36px 0
+
+.container .content .item .avatar {
+  position: absolute;
+  top: 19px;
+  left: 19px;
+}
+
+.container .content .item .avatar img {
+  border-radius: 50%;
+  border: 2px #fff solid;
+}
+
+.container .content .item .message {
+  padding-left: 65px;
 }
