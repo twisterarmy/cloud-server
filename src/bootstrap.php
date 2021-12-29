@@ -59,6 +59,9 @@ if (isset($_GET['_route_'])) {
       case 'logout':
         require(PROJECT_DIR . '/application/controller/logout.php');
       break;
+      case 'following':
+        require(PROJECT_DIR . '/application/controller/following.php');
+      break;
       case 'register':
         require(PROJECT_DIR . '/application/controller/register.php');
       break;
