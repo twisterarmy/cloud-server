@@ -1,0 +1,132 @@
+* {
+  -moz-transition: all .4s ease-in;
+  -o-transition: all .4s ease-in;
+  /* issue #2
+  -webkit-transition: all .5s ease-in;
+  transition: all .5s ease-in; */
+}
+
+a,
+a:visited,
+a:active {
+  color: #fff
+}
+
+.container {
+  max-width: 1024px;
+  margin: 16px auto;
+  padding: 0 16px;
+  overflow: hidden
+}
+
+.container .side  {
+  float: left;
+  width: 30%;
+  padding-right: 16px
+}
+
+.container .side form input {
+  height: 36px;
+  width: 100%;
+  padding: 16px 8px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+  font-family: Roboto-Regular, Sans-Serif, Verdana;
+  font-size: 14px;
+  background: rgb(56, 65, 78);
+  color: #dfe8f4;
+  outline: none;
+}
+
+.container .side .suggestions {
+  padding: 16px 8px;
+}
+
+.container .side .suggestions h4 {
+  text-align: center;
+  text-transform: uppercase
+}
+
+.container .main  {
+  float: left;
+  width: 70%
+}
+
+.container .main .menu .item {
+  display: inline-block;
+  /* background: rgba(39, 46, 57, 0.28); */
+  background: rgba(101, 114, 134, 0.28);
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  padding: 8px 16px
+}
+
+.container .main .menu .item.active,
+.container .main .menu .item:hover {
+  background: #272E39;
+}
+
+.container .main .menu .item span {
+  font-size: 12px;
+  margin: 0 8px
+}
+
+.container .main .post {
+  margin: 8px 0;
+  padding: 16px;
+  background: #272E39;
+  border-radius: 3px;
+  overflow: hidden
+}
+
+.container .main .post textarea {
+  height: 52px;
+  width: 100%;
+  padding: 16px 8px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+  font-family: Roboto-Regular, Sans-Serif, Verdana;
+  font-size: 14px;
+  background: rgba(101, 114, 134, 0.28);
+  color: #dfe8f4;
+  outline: none
+
+}
+
+.container .main .post textarea:focus {
+  height: 120px;
+  /*background: rgb(79, 90, 107);*/
+}
+
+.container .main .post button {
+  float: right;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #337ab7;
+  color: #fff;
+  border: 0
+}
+
+.container .main .post button:hover {
+  background-color: #437baa
+}
+
+.container .main .post .content {
+  background: rgb(89,99,116);
+  border-radius: 3px;
+  padding: 16px;
+}
+
+.container .main .content .item {
+  padding: 16px;
+  margin-bottom: 8px;
+  background: rgba(101, 114, 134, 0.28);
+  border-radius: 3px;
+  color: #dfe8f4
+}
+
+.container .main .footer {
+  margin: 36px 0
+}

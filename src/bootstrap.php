@@ -51,7 +51,7 @@ if (isset($_GET['_route_'])) {
 
     switch ($_GET['_route_']) {
       case '':
-        require(PROJECT_DIR . '/application/controller/index.php');
+        require(PROJECT_DIR . '/application/controller/home.php');
       break;
       case 'login':
         require(PROJECT_DIR . '/application/controller/login.php');
@@ -70,5 +70,5 @@ if (isset($_GET['_route_'])) {
     }
 
 } else {
-  require(PROJECT_DIR . '/application/controller/index.php');
+  require(PROJECT_DIR . '/application/controller/home.php');
 }

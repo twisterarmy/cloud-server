@@ -7,4 +7,4 @@ if (!isset($_SESSION['username'])) {
 
 $metaTitle = _('Home | Twisterarmy Cloud');
 
-require(PROJECT_DIR . '/application/view/index.phtml');
+require(PROJECT_DIR . '/application/view/home.phtml');
