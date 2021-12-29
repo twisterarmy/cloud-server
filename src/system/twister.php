@@ -12,7 +12,7 @@ class Twister {
 
   public function getError() {
 
-    return $this->_error;
+    return $this->_error; // Error string
   }
 
   public function importWallet(string $userName, string $userPrivateKey) {
@@ -40,7 +40,7 @@ class Twister {
 
       } else {
 
-        return true;
+        return true; // empty error, empty result keys on success
       }
     }
 
@@ -71,7 +71,7 @@ class Twister {
 
       } else {
 
-        return $response['result'];
+        return $response['result']; // Block hash
       }
     }
 
@@ -102,7 +102,7 @@ class Twister {
 
       } else {
 
-        return $response['result'];
+        return $response['result']; // Array of the block data
       }
     }
 
@@ -133,7 +133,7 @@ class Twister {
 
       } else {
 
-        return $response['result'];
+        return $response['result']; // Private Key
       }
     }
 
@@ -164,7 +164,7 @@ class Twister {
 
       } else {
 
-        return $response['result'];
+        return $response['result']; // transaction ID
       }
     }
 
