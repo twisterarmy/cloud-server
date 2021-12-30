@@ -12,7 +12,7 @@ require(PROJECT_DIR . '/system/twister.php');
 require(PROJECT_DIR . '/system/icon.php');
 require(PROJECT_DIR . '/system/helper/filter.php');
 require(PROJECT_DIR . '/system/helper/valid.php');
-require(PROJECT_DIR . '/system/helper/localization.php');
+require(PROJECT_DIR . '/system/helper/format.php');
 
 // Init libraries
 $_twister = new Twister(

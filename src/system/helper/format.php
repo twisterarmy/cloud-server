@@ -1,6 +1,6 @@
 <?php
 
-class Localization {
+class Format {
 
   public static function plural(int $number, array $texts) {
 
@@ -33,5 +33,10 @@ class Localization {
           return sprintf('%s %s ago', $r, self::plural($r, $v));
       }
     }
-}
+  }
+
+  public static function post(string $text) {
+
+    return nl2br($text);
+  }
 }

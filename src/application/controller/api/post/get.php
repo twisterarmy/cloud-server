@@ -43,16 +43,16 @@ if (isset($_SESSION['userName'])) {
         }
 
         $reTwist = [
-          'message'  => implode('', $reTwists),
-          'time'     => Localization::time($post['userpost']['rt']['time']),
+          'message'  => Format::post(implode('', $reTwists)),
+          'time'     => Format::time($post['userpost']['rt']['time']),
           'userName' => $post['userpost']['rt']['n'],
           'reTwist'  => $reTwist,
         ];
       }
 
       $posts[] = [
-        'message'  => implode('', $messages),
-        'time'     => Localization::time($post['userpost']['time']),
+        'message'  => Format::post(implode('', $messages)),
+        'time'     => Format::time($post['userpost']['time']),
         'userName' => $post['userpost']['n'],
         'reTwist'  => $reTwist,
       ];
