@@ -9,9 +9,13 @@ class Format {
     return $texts[(($number % 100) > 4 && ($number % 100) < 20) ? 2 : $cases[min($number % 10, 5)]];
   }
 
-  public static function time(int $time) {
+  public static function time(int $time, bool $ago = true) {
 
-    $timeDiff = time() - $time;
+    if ($ago) {
+      $timeDiff = time() - $time;
+    } else {
+      $timeDiff = $time - time();
+    }
 
     if ($timeDiff < 1) {
       return _('0 seconds');
@@ -30,7 +34,14 @@ class Format {
 
       if ($d >= 1) {
           $r = round($d);
-          return sprintf('%s %s ago', $r, self::plural($r, $v));
+
+          if ($ago) {
+            return sprintf(_('%s %s ago'), $r, self::plural($r, $v));
+          } else {
+            return sprintf(_('%s %s later'), $r, self::plural($r, $v));
+          }
+
+
       }
     }
   }
