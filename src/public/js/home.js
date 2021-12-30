@@ -9,7 +9,7 @@ var Home = {
           } else {
             var rt = $(
               $('<div/>', {
-                'class': 'reTwist'
+                'class': 'retwist'
               }).append(
                 $('<div/>', {
                   'class': 'info'
