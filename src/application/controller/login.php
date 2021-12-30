@@ -10,7 +10,7 @@ $errorUserPrivateKey = false;
 $metaTitle = _('Login | Twisterarmy Cloud');
 
 // Redirect home when user already logged
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['userName'])) {
     header('Location: ' . PROJECT_HOST, true, 302);
 }
 
@@ -74,7 +74,7 @@ if (isset($_POST) && $_POST) {
 
         session_start();
 
-        $_SESSION['username'] = $userName;
+        $_SESSION['userName'] = $userName;
 
         // Redirect
         header('Location: ' . PROJECT_HOST, true, 302);

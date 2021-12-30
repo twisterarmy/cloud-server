@@ -24,26 +24,16 @@
     <div class="post">
       <form action="<?php echo PROJECT_HOST ?>" method="POST" name="post">
         <div class="avatar">
-          <img src="<?php echo PROJECT_HOST ?>/api/image?hash=<?php echo $_SESSION['username'] ?>" alt="" />
+          <img src="<?php echo PROJECT_HOST ?>/api/image?hash=<?php echo $_SESSION['userName'] ?>" alt="" />
         </div>
         <div class="message">
-          <textarea name="post" placeholder="<?php echo _('Enter your post...') ?>"></textarea>
+          <textarea name="post" placeholder="<?php echo _('Enter your post...') ?>" id="message"></textarea>
         </div>
         <div class="action">
-          <!--<span>220</span>-->
-          <button><?php echo _('Send') ?></button>
+          <div class="button" onclick="Home.post.add('#feed', '#message')"><?php echo _('Send') ?></div>
         </div>
       </form>
     </div>
-    <div class="content">
-      <div class="item">
-        <div class="avatar">
-          <img src="<?php echo PROJECT_HOST ?>/api/image?hash=<?php echo $_SESSION['username'] ?>" alt="" />
-        </div>
-        <div class="message">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-        </div>
-      </div>
-    </div>
+    <div class="content" id="feed"></div>
   </div>
 </div>

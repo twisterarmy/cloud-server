@@ -58,7 +58,7 @@ a:active {
 }
 
 .container .post {
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   background: #272E39;
   border-radius: 3px;
   overflow: hidden;
@@ -96,10 +96,8 @@ a:active {
   border-radius: 3px;
   font-family: Roboto-Regular, Sans-Serif, Verdana;
   font-size: 14px;
-  /*background: rgba(101, 114, 134, 0.28);*/
-  /*background: rgba(255, 255, 255, 0.18);*/
-  background: rgb(77, 86, 102);
-  color: #dfe8f4;
+  background: rgb(238, 238, 238);
+  color: #1c1d1e;
   outline: none;
   letter-spacing: 0.2px;
   font-size: 13px;
@@ -108,21 +106,20 @@ a:active {
 
 .container .post textarea:focus {
   height: 80px;
-  background: rgb(87, 98, 117);
-  /*background: rgb(103, 112, 126);*/
 }
 
-.container .post button {
+.container .post .button {
   float: right;
-  padding: 8px 16px;
+  padding: 6px 16px;
   border-radius: 3px;
   cursor: pointer;
   background-color: #337ab7;
   color: #fff;
-  border: 0
+  border: 0;
+  font-size: 13px;
 }
 
-.container .post button:hover {
+.container .post .button:hover {
   background-color: #437baa
 }
 
@@ -134,13 +131,10 @@ a:active {
 
 .container .content .item {
   padding: 16px;
-  margin-bottom: 8px;
-  /*background: rgba(101, 114, 134, 0.28);*/
-  /*background: rgba(255, 254, 254, 0.04);*/
-  /*background: rgba(255, 255, 255, 0.18);*/
-  background: rgb(39, 46, 57);
+  margin-bottom: 2px;
+  color: #1c1d1e;
+  background: rgb(238, 238, 238);
   border-radius: 3px;
-  color: #a5b2bd;
   min-height: 84px;
 }
 
@@ -160,4 +154,23 @@ a:active {
   letter-spacing: 0.2px;
   font-size: 13px;
   padding-right: 8px;
+}
+
+.container .content .item .message .retwist {
+  border: 1px #ccc solid;
+  padding: 8px;
+  border-radius: 3px;
+  background: #e6e6e6;
+}
+
+.container .item .message .info {
+  font-weight: bold;
+  /*border-bottom: 1px #ccc solid;*/
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.container .item .message .info .time {
+  float: right;
+  font-weight: normal;
 }

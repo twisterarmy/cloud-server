@@ -12,6 +12,7 @@ require(PROJECT_DIR . '/system/twister.php');
 require(PROJECT_DIR . '/system/icon.php');
 require(PROJECT_DIR . '/system/helper/filter.php');
 require(PROJECT_DIR . '/system/helper/valid.php');
+require(PROJECT_DIR . '/system/helper/localization.php');
 
 // Init libraries
 $_twister = new Twister(
@@ -68,6 +69,12 @@ if (isset($_GET['_route_'])) {
       break;
       case 'api/image':
         require(PROJECT_DIR . '/application/controller/api/image.php');
+      break;
+      case 'api/post/add':
+        require(PROJECT_DIR . '/application/controller/api/post/add.php');
+      break;
+      case 'api/post/get':
+        require(PROJECT_DIR . '/application/controller/api/post/get.php');
       break;
       default:
         require(PROJECT_DIR . '/application/controller/error/404.php');

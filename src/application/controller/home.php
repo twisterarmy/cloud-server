@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['userName'])) {
 
   header('Location: ' . PROJECT_HOST . '/login', true, 302);
 }
@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 $metaTitle = _('Home | Twisterarmy Cloud');
 
 $followingUsersTotal = 0;
-foreach ((array) $_twister->getFollowing($_SESSION['username']) as $followingUserName) {
+foreach ((array) $_twister->getFollowing($_SESSION['userName']) as $followingUserName) {
   $followingUsersTotal++;
 }
 

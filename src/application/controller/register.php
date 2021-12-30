@@ -1,7 +1,7 @@
 <?php
 
 // Redirect to the login page on active session
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['userName'])) {
     header('Location: ' . PROJECT_HOST, true, 302);
 }
 

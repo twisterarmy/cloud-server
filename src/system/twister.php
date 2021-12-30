@@ -109,7 +109,14 @@ class Twister {
     return false;
   }
 
-  public function getPosts(string $userNameRecipient, string $userNameSender, int $limit) {
+  public function getPosts(array $userNames, int $limit) {
+
+    $data = [];
+    foreach ($userNames as $userName) {
+      $data[] = [
+        'username' => $userName
+      ];
+    }
 
     $this->_curl->prepare(
       '/',
@@ -120,10 +127,7 @@ class Twister {
         'method'  => 'getposts',
         'params'  => [
           $limit,
-          [
-            ['username' => $userNameRecipient],
-            ['username' => $userNameSender],
-          ]
+          $data
         ],
         'id' => time() + rand()
       ]
@@ -282,6 +286,39 @@ class Twister {
         'method'  => 'sendnewusertransaction',
         'params'  => [
           $userName
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result']; // transaction ID
+      }
+    }
+
+    return false;
+  }
+
+  public function newPostMessage(string $userName, int $index, string $message) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'newpostmsg',
+        'params'  => [
+          $userName,
+          $index,
+          $message
         ],
         'id' => time() + rand()
       ]
