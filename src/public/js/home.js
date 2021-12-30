@@ -53,7 +53,11 @@ var Home = {
                     time
                   )
                 )
-              ).append(rt).append(message)
+              ).append(rt).append(
+                $('<div/>', {
+                  'class': (message != '' ? 'quote' : '')
+                }).append(message)
+              )
             )
           );
         }

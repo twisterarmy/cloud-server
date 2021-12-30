@@ -154,7 +154,6 @@ a:active {
   padding-left: 73px;
   letter-spacing: 0.2px;
   font-size: 13px;
-  padding-right: 8px;
 }
 
 .container .content .item .message .retwist {
@@ -162,13 +161,15 @@ a:active {
   padding: 8px;
   border-radius: 3px;
   background: #e6e6e6;
+  margin-top: 8px
+}
+
+.container .content .item .message .quote {
+  margin-top: 8px
 }
 
 .container .item .message .info {
   font-weight: bold;
-  /*border-bottom: 1px #ccc solid;*/
-  padding-bottom: 4px;
-  margin-bottom: 8px;
 }
 
 .container .item .message .info .time {
