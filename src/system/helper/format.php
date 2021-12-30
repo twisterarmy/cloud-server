@@ -18,7 +18,7 @@ class Format {
     }
 
     if ($timeDiff < 1) {
-      return _('0 seconds');
+      return _('now');
     }
 
     $a = [365 * 24 * 60 * 60  => [_('year'), _('years'), _('years')],
