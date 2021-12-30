@@ -1,0 +1,13 @@
+<?php include(PROJECT_DIR . '/application/controller/common/header/guest.php') ?>
+<div class="mw-1024 mx-auto of-hidden">
+  <div class="mw-360 mx-auto my-100 bg-c-4 b-r-3 py-28 px-24">
+    <h1 class="f-size-20 f-normal mb-20"><?php echo _('Register') ?></h1>
+    <div class="mb-22">
+      <?php echo sprintf(_('New user can be registered %s.'), $nextUserRegistrationTime) ?>
+    </div>
+    <div class="mt-4">
+      <a class="btn btn-1 d-inline-block" href="login"><?php echo _('Login') ?></a>
+    </div>
+  </div>
+</div>
+<?php include(PROJECT_DIR . '/application/controller/common/footer/guest.php') ?>

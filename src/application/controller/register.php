@@ -20,6 +20,21 @@ if (!APPLICATION_ALLOW_REGISTRATION) {
     exit;
 }
 
+// Prevent bot attacks by new registrations timeout
+if (APPLICATION_USER_REGISTRATION_TIMEOUT) {
+
+  if ($lastUser = $_modelUser->getLastUser()) {
+
+    if ($lastUser['time'] + APPLICATION_USER_REGISTRATION_TIMEOUT > time()) {
+
+        $nextUserRegistrationTime = Format::time($lastUser['time'] + APPLICATION_USER_REGISTRATION_TIMEOUT, false);
+
+        require(PROJECT_DIR . '/application/view/register_timeout.phtml');
+        exit;
+    }
+  }
+}
+
 // Process form request
 if (isset($_POST) && $_POST) {
 

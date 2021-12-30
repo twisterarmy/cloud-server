@@ -17,6 +17,24 @@ class ModelUser extends Model {
     }
   }
 
+  public function getLastUser() {
+
+    try {
+
+      $query = $this->_db->query("SELECT * FROM `user`
+                                           JOIN `block` ON (`user`.`blockId` = `block`.`blockId`)
+                                           ORDER BY `userId` DESC
+                                           LIMIT 1");
+
+      return $query->rowCount() ? $query->fetch() : [];
+
+    } catch (PDOException $e) {
+
+      trigger_error($e->getMessage());
+      return false;
+    }
+  }
+
   public function userNameExists(string $userName) {
 
     try {
