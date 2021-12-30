@@ -12,24 +12,14 @@ $metaStyles = [
   'css/template/default/module/menu.css',
   'css/template/default/module/post.css',
   'css/template/default/module/feed.css',
+  'css/template/default/module/following.css',
 ];
 
 $metaScripts = [
   'js/module/menu.js',
   'js/module/post.js',
-  'js/module/feed.js',
+  'js/module/following.js',
+  'js/follow.js',
 ];
-
-$followingUsersTotal = 0;
-$followingUsers      = [];
-
-foreach ((array) $_twister->getFollowing($_SESSION['userName']) as $followingUserName) {
-
-  $followingUsers[] = [
-    'name' => $followingUserName
-  ];
-
-  $followingUsersTotal++;
-}
 
 require(PROJECT_DIR . '/application/view/follow.phtml');

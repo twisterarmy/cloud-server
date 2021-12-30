@@ -1,14 +1,10 @@
 <?php include(PROJECT_DIR . '/application/controller/common/header/user.php') ?>
 <div class="container">
-  <div class="main">
-    <div class="content">
-      <?php foreach ($followingUsers as $followingUser) { ?>
-        <div class="item">
-          @<?php echo $followingUser['name'] ?>
-        </div>
-      <?php } ?>
-      <h2><?php echo _('Following suggestions') ?></h2>
-    </div>
+  <div class="left">
+    <?php include(PROJECT_DIR . '/application/controller/common/module/menu.php') ?>
+    <?php include(PROJECT_DIR . '/application/controller/common/module/following.php') ?>
   </div>
-  <div class="side"></div>
+  <div class="right">
+    <?php include(PROJECT_DIR . '/application/controller/common/module/feed.php') ?>
+  </div>
 </div>

@@ -18,6 +18,7 @@ $metaScripts = [
   'js/module/menu.js',
   'js/module/post.js',
   'js/module/feed.js',
+  'js/home.js',
 ];
 
 require(PROJECT_DIR . '/application/view/home.phtml');
