@@ -5,9 +5,7 @@ $response = [
   'message' => _('Internal server error'),
 ];
 
-if (isset($_SESSION['userName'])) {
-
-  $userName = isset($_POST['userName']) ? $_POST['userName'] : false;
+if (isset($_SESSION['userName']) && isset($_POST['userName'])) {
 
   $result = $_twister->unFollow($_SESSION['userName'], [$_POST['userName']]);
 
