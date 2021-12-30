@@ -15,7 +15,7 @@ var ModulePost = {
 
           input.val('');
 
-          $(document).trigger('modulePost.add:success', [response]);
+          $(document).trigger('ModulePost.add:success', [response]);
 
         } else {
 

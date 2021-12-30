@@ -90,6 +90,8 @@ var ModuleFollowing = {
             ModuleFollowing.load(list, reFresh);
           }
 
+          $(document).trigger('ModuleFollowing.unFollow:success', [response]);
+
         } else {
 
           alert(response.message);
