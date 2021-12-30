@@ -7,6 +7,16 @@
   min-height: 84px;
 }
 
+.moduleFeed .item a,
+.moduleFeed .item a:active,
+.moduleFeed .item a:visited {
+  color: #345b8e;
+}
+
+.moduleFeed .item a:hover {
+  text-decoration: underline;
+}
+
 .moduleFeed .item .avatar {
   position: absolute;
   top: 19px;

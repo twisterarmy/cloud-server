@@ -48,6 +48,9 @@ class Format {
 
   public static function post(string $text) {
 
-    return nl2br($text);
+    $text = preg_replace("|((https?://)?([\d\w\.-]+\.[\w\.]{2,6})[^\s\]\[\<\>]*/?)|i", "<a href=\"$1\" target=\"_blank\">$3</a>", $text);
+    $text = nl2br($text);
+
+    return $text;
   }
 }
