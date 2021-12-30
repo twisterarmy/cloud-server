@@ -21,7 +21,8 @@ a:active {
 }
 
 .container > .left {
-  float: left
+  position: fixed;
+  z-index: 99;
 }
 
 .container > .right {
