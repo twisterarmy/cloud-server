@@ -76,6 +76,9 @@ if (isset($_GET['_route_'])) {
       case 'api/post/get':
         require(PROJECT_DIR . '/application/controller/api/post/get.php');
       break;
+      case 'api/follow/total':
+        require(PROJECT_DIR . '/application/controller/api/follow/total.php');
+      break;
       case 'api/follow/get':
         require(PROJECT_DIR . '/application/controller/api/follow/get.php');
       break;
