@@ -120,5 +120,8 @@ var Home = {
 }
 
 $(document).ready(function() {
+
   Home.post.get('#feed', true);
+
+  $('#moduleMenu > a[href="/"]').addClass('active');
 });
