@@ -4,19 +4,7 @@
     <?php include(PROJECT_DIR . '/application/controller/common/module/menu.php') ?>
   </div>
   <div class="right">
-    <div class="post">
-      <form action="<?php echo PROJECT_HOST ?>" method="POST" name="post">
-        <div class="avatar">
-          <img src="<?php echo PROJECT_HOST ?>/api/image?hash=<?php echo $_SESSION['userName'] ?>" alt="" />
-        </div>
-        <div class="message">
-          <textarea name="post" placeholder="<?php echo _('Enter your post...') ?>" id="message"></textarea>
-        </div>
-        <div class="action">
-          <div class="button" onclick="Home.post.add('#feed', '#message')"><?php echo _('Send') ?></div>
-        </div>
-      </form>
-    </div>
+    <?php include(PROJECT_DIR . '/application/controller/common/module/post.php') ?>
     <div class="feed" id="feed"></div>
   </div>
 </div>
