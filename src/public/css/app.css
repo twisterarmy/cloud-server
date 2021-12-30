@@ -130,7 +130,7 @@ a:active {
   padding: 16px;
 }
 
-.container .content .item {
+.container .feed .item {
   padding: 16px;
   margin-bottom: 2px;
   color: #1c1d1e;
@@ -139,24 +139,24 @@ a:active {
   min-height: 84px;
 }
 
-.container .content .item .avatar {
+.container .feed .item .avatar {
   position: absolute;
   top: 19px;
   left: 19px;
 }
 
-.container .content .item .avatar img {
+.container .feed .item .avatar img {
   border-radius: 50%;
   border: 2px #fff solid;
 }
 
-.container .content .item .message {
+.container .feed .item .message {
   padding-left: 73px;
   letter-spacing: 0.2px;
   font-size: 13px;
 }
 
-.container .content .item .message .retwist {
+.container .feed .item .message .retwist {
   border: 1px #ccc solid;
   padding: 8px;
   border-radius: 3px;
@@ -164,7 +164,7 @@ a:active {
   margin-top: 8px
 }
 
-.container .content .item .message .quote {
+.container .feed .item .message .quote {
   margin-top: 8px
 }
 
