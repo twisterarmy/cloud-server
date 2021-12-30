@@ -21,6 +21,7 @@
   position: absolute;
   top: 19px;
   left: 19px;
+  z-index: 2;
 }
 
 .moduleFeed .item .avatar img {
@@ -53,4 +54,11 @@
 .moduleFeed .item .message .info .time {
   float: right;
   font-weight: normal;
+}
+
+.moduleFeed .item .message .info a,
+.moduleFeed .item .message .info a:hover,
+.moduleFeed .item .message .info a:visited {
+  color: #1c1d1e;
+  text-decoration: none;
 }
