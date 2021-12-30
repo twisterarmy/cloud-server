@@ -7,6 +7,19 @@ if (!isset($_SESSION['userName'])) {
 
 $metaTitle = _('Following | Twisterarmy Cloud');
 
+// Load dependencies
+$metaStyles = [
+  'css/template/default/module/menu.css',
+  'css/template/default/module/post.css',
+  'css/template/default/module/feed.css',
+];
+
+$metaScripts = [
+  'js/module/menu.js',
+  'js/module/post.js',
+  'js/module/feed.js',
+];
+
 $followingUsersTotal = 0;
 $followingUsers      = [];
 

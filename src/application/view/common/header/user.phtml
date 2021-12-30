@@ -9,13 +9,13 @@
   <link rel="stylesheet" type="text/css" href="css/template/default/common.css" />
   <link rel="stylesheet" type="text/css" href="css/template/default/mobile.css" />
   <link rel="stylesheet" type="text/css" href="css/template/default/app.css" />
-  <link rel="stylesheet" type="text/css" href="css/template/default/module/menu.css" />
-  <link rel="stylesheet" type="text/css" href="css/template/default/module/post.css" />
-  <link rel="stylesheet" type="text/css" href="css/template/default/module/feed.css" />
+  <?php foreach ($metaStyles as $metaStyle) { ?>
+  <link rel="stylesheet" type="text/css" href="<?php echo $metaStyle ?>" />
+  <?php } ?>
   <script src="js/jquery.js"></script>
-  <script src="js/module/menu.js"></script>
-  <script src="js/module/post.js"></script>
-  <script src="js/module/feed.js"></script>
+  <?php foreach ($metaScripts as $metaScript) { ?>
+  <script src="<?php echo $metaScript ?>"></script>
+  <?php } ?>
   <script src="js/home.js"></script>
 </head>
 <body class="bg-c-1 bg-img-1 c-0">
