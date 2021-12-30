@@ -11,7 +11,7 @@ if (isset($_SESSION['userName'])) {
 
     $response = [
       'success' => false,
-      'message' => _('Max 140 chars per message')
+      'message' => _('Post message must contain from 1 to 140 chars')
     ];
 
   } else if (!$userPosts = $_twister->getPosts([$_SESSION['userName']], 1)) {
