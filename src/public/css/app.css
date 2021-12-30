@@ -33,31 +33,6 @@ a:active {
   margin-bottom: 64px
 }
 
-.container .menu {
-  margin-bottom: 6px
-}
-
-.container .menu .item {
-  display: inline-block;
-  background: rgba(39, 46, 57, 0.28);
-  /* background: rgba(101, 114, 134, 0.28); */
-  border-radius: 3px;
-  cursor: pointer;
-  text-align: center;
-  padding: 8px 16px;
-  margin: 2px
-}
-
-.container .menu .item.active,
-.container .menu .item:hover {
-  background: #272E39;
-}
-
-.container .menu .item span {
-  font-size: 12px;
-  margin: 0 8px
-}
-
 .container .post {
   margin-bottom: 14px;
   background: #272E39;
