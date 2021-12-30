@@ -180,6 +180,38 @@ class Twister {
     return false;
   }
 
+  public function unFollow(string $userName, array $userNames) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'unfollow',
+        'params'  => [
+          $userName,
+          $userNames
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result'];
+      }
+    }
+
+    return false;
+  }
+
   public function getFollowing(string $userName) {
 
     $this->_curl->prepare(

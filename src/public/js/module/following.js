@@ -40,7 +40,7 @@ var ModuleFollowing = {
                 $('<i/>', {
                   'class': 'bi bi-x-circle',
                   'title': 'Unfollow',
-                  'onclick': '',
+                  'onclick': 'ModuleFollowing.unFollow(\'' + list + '\', \'' + userName + '\', true)',
                 })
               )
             )
@@ -64,6 +64,31 @@ var ModuleFollowing = {
           $(response.users).each(function() {
             ModuleFollowing.template.list.item.append(list, this.userName);
           });
+
+        } else {
+
+          alert(response.message);
+
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+         console.log(textStatus, errorThrown);
+      }
+    });
+  },
+  unFollow: function(list, userName, reFresh) {
+    $.ajax({
+      url: 'api/follow/delete',
+      type: 'POST',
+      data: {
+        userName: userName
+      },
+      success: function (response) {
+        if (response.success) {
+
+          if (reFresh) {
+            ModuleFollowing.load(list, reFresh);
+          }
 
         } else {
 

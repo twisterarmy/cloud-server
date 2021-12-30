@@ -79,6 +79,9 @@ if (isset($_GET['_route_'])) {
       case 'api/follow/get':
         require(PROJECT_DIR . '/application/controller/api/follow/get.php');
       break;
+      case 'api/follow/delete':
+        require(PROJECT_DIR . '/application/controller/api/follow/delete.php');
+      break;
       default:
         require(PROJECT_DIR . '/application/controller/error/404.php');
     }
