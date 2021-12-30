@@ -19,4 +19,4 @@ foreach ((array) $_twister->getFollowing($_SESSION['userName']) as $followingUse
   $followingUsersTotal++;
 }
 
-require(PROJECT_DIR . '/application/view/following.phtml');
+require(PROJECT_DIR . '/application/view/follow.phtml');
