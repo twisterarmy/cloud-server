@@ -10,7 +10,7 @@
   cursor: pointer;
   text-align: center;
   padding: 8px 16px;
-  margin: 2px
+  margin: 0 2px 2px 2px;
 }
 
 .moduleMenu .item.active,

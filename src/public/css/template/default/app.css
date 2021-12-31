@@ -21,13 +21,13 @@ a:active {
 }
 
 .container > .left {
-  position: fixed;
+  float: right;
   z-index: 99;
   width: 360px
 }
 
 .container > .right {
-  padding-left: 380px
+  padding-right: 380px
 }
 
 .container {
