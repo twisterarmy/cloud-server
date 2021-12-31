@@ -13,7 +13,7 @@ var ModuleMenu = {
         if (response.success) {
 
           if (response.total) {
-            $('#moduleMenu a[href=follow] span').html(response.total).show();
+            $('#moduleMenu a[href=people] span').html(response.total).show();
           }
 
         } else {
