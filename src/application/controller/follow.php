@@ -18,6 +18,7 @@ $metaStyles = [
 $metaScripts = [
   'js/module/menu.js',
   'js/module/post.js',
+  'js/module/feed.js',
   'js/module/following.js',
   'js/follow.js',
 ];
