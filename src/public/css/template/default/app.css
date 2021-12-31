@@ -20,13 +20,13 @@ a:active {
   position: relative
 }
 
-.container > .left {
+.container > .right {
   float: right;
   z-index: 99;
   width: 360px
 }
 
-.container > .right {
+.container > .left {
   padding-right: 380px
 }
 
