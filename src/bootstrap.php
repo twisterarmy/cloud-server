@@ -89,6 +89,9 @@ if (isset($_GET['_route_'])) {
       case 'api/follow/delete':
         require(PROJECT_DIR . '/application/controller/api/follow/delete.php');
       break;
+      case 'api/user/random':
+        require(PROJECT_DIR . '/application/controller/api/user/random.php');
+      break;
 
       // Multi-attribute pages
       default:

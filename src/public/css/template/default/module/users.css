@@ -1,0 +1,33 @@
+.moduleUsers .item {
+  padding: 16px;
+  margin-bottom: 2px;
+  color: #1c1d1e;
+  background: rgba(238, 238, 238, 0.08);
+  border-radius: 3px;
+}
+
+.moduleUsers .item.active a,
+.moduleUsers .item.active a:visited,
+.moduleUsers .item.active a:active {
+  color: #1c1d1e;
+}
+
+.moduleUsers .item .avatar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.moduleUsers .item .avatar img {
+  border-radius: 50%;
+  border: 2px #fff solid;
+  width: 16px;
+  height: 16px;
+}
+
+.moduleUsers .item .info {
+  padding-left: 40px;
+  padding-right: 32px;
+  letter-spacing: 0.2px;
+  font-size: 13px;
+}

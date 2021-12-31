@@ -35,6 +35,25 @@ class ModelUser extends Model {
     }
   }
 
+  public function getLastRandomUsers(int $limit) {
+
+    try {
+
+      $query = $this->_db->query("SELECT * FROM `user`
+                                           JOIN `block` ON (`user`.`blockId` = `block`.`blockId`)
+                                           WHERE `block`.`time` > UNIX_TIMESTAMP(CURDATE() - interval 5 YEAR)
+                                           ORDER BY RAND()
+                                           LIMIT " . (int) $limit);
+
+      return $query->rowCount() ? $query->fetchAll() : [];
+
+    } catch (PDOException $e) {
+
+      trigger_error($e->getMessage());
+      return false;
+    }
+  }
+
   public function userNameExists(string $userName) {
 
     try {
