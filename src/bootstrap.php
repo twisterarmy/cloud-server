@@ -51,7 +51,9 @@ if (!session_id()) {
 // Route
 if (isset($_GET['_route_'])) {
 
-    switch ($_GET['_route_']) {
+  switch ($_GET['_route_']) {
+
+      // Pages
       case '':
         require(PROJECT_DIR . '/application/controller/home.php');
       break;
@@ -61,12 +63,16 @@ if (isset($_GET['_route_'])) {
       case 'logout':
         require(PROJECT_DIR . '/application/controller/logout.php');
       break;
+      /*
       case 'follow':
         require(PROJECT_DIR . '/application/controller/follow.php');
       break;
+      */
       case 'register':
         require(PROJECT_DIR . '/application/controller/register.php');
       break;
+
+      // API calls
       case 'api/image':
         require(PROJECT_DIR . '/application/controller/api/image.php');
       break;
@@ -88,8 +94,21 @@ if (isset($_GET['_route_'])) {
       case 'api/follow/delete':
         require(PROJECT_DIR . '/application/controller/api/follow/delete.php');
       break;
+
+      // Multi-attribute pages
       default:
-        require(PROJECT_DIR . '/application/controller/error/404.php');
+
+        switch (true) {
+
+          // Pages
+          case preg_match('|^follow[/\w_]?|i', $_GET['_route_']):
+            require(PROJECT_DIR . '/application/controller/follow.php');
+          break;
+
+          // 404
+          default:
+          require(PROJECT_DIR . '/application/controller/error/404.php');
+        }
     }
 
 } else {

@@ -14,7 +14,7 @@ var ModuleFeed = {
                   'class': 'info'
                 }).append(
                   $('<a/>', {
-                    'href': 'follow/' + userName
+                    'href': 'follow/' + reTwist.userName
                   }).append(reTwist.userName)
                 ).append(
                   $('<span/>', {
@@ -74,7 +74,9 @@ var ModuleFeed = {
     $.ajax({
       url: 'api/post/get',
       type: 'POST',
-      data: {},
+      data: {
+        userName: $(feed).data('username')
+      },
       success: function (response) {
         if (response.success) {
 
@@ -88,7 +90,7 @@ var ModuleFeed = {
 
         } else {
 
-          alert(response.message);
+          console.log(response.message);
 
         }
       },

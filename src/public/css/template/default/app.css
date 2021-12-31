@@ -23,6 +23,7 @@ a:active {
 .container > .left {
   position: fixed;
   z-index: 99;
+  width: 360px
 }
 
 .container > .right {

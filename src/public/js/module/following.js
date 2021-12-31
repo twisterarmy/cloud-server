@@ -5,7 +5,7 @@ var ModuleFollowing = {
         append: function(list, userName) {
           $(list).append(
             $('<div/>', {
-              'class': 'item'
+              'class': 'item' + (userName == $(list).data('username') ? ' active' : '')
             }).append(
               $('<div/>', {
                 'class': 'avatar'
@@ -32,15 +32,9 @@ var ModuleFollowing = {
                 'class': 'action'
               }).append(
                 $('<i/>', {
-                  'class': 'bi bi-envelope',
-                  'title': 'Direct Message',
-                  'onclick': '',
-                })
-              ).append(
-                $('<i/>', {
                   'class': 'bi bi-x-circle',
                   'title': 'Unfollow',
-                  'onclick': 'ModuleFollowing.unFollow(\'' + list + '\', \'' + userName + '\', true)',
+                  'onclick': 'ModuleFollowing.unFollow(\'' + list + '\', \'' + userName + '\', false)',
                 })
               )
             )
