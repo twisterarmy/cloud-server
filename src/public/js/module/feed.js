@@ -14,7 +14,7 @@ var ModuleFeed = {
                   'class': 'info'
                 }).append(
                   $('<a/>', {
-                    'href': 'follow/' + reTwist.userName
+                    'href': 'people/' + reTwist.userName
                   }).append(reTwist.userName)
                 ).append(
                   $('<span/>', {
@@ -34,7 +34,7 @@ var ModuleFeed = {
                 'class': 'avatar'
               }).append(
                 $('<a/>', {
-                  'href': 'follow/' + userName
+                  'href': 'people/' + userName
                 }).append(
                   $('<img/>', {
                     'src': '/api/image?hash=' + userName,
@@ -50,7 +50,7 @@ var ModuleFeed = {
                   'class': 'info'
                 }).append(
                   $('<a/>', {
-                    'href': 'follow/' + userName
+                    'href': 'people/' + userName
                   }).append(userName)
                 ).append(
                   $('<span/>', {

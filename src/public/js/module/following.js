@@ -11,7 +11,7 @@ var ModuleFollowing = {
                 'class': 'avatar'
               }).append(
                 $('<a/>', {
-                  'href': 'follow/' + userName
+                  'href': 'people/' + userName
                 }).append(
                   $('<img/>', {
                     'src': '/api/image?hash=' + userName,
@@ -24,7 +24,7 @@ var ModuleFollowing = {
                 'class': 'info'
               }).append(
                 $('<a/>', {
-                  'href': 'follow/' + userName
+                  'href': 'people/' + userName
                 }).append(userName)
               )
             ).append(

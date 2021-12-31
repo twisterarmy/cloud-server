@@ -20,7 +20,7 @@ $metaScripts = [
   'js/module/post.js',
   'js/module/feed.js',
   'js/module/following.js',
-  'js/follow.js',
+  'js/people.js',
 ];
 
 // Auto-following
@@ -33,4 +33,4 @@ if (isset($_GET['_route_'])) {
   }
 }
 
-require(PROJECT_DIR . '/application/view/follow.phtml');
+require(PROJECT_DIR . '/application/view/people.phtml');

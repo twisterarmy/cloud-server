@@ -63,11 +63,6 @@ if (isset($_GET['_route_'])) {
       case 'logout':
         require(PROJECT_DIR . '/application/controller/logout.php');
       break;
-      /*
-      case 'follow':
-        require(PROJECT_DIR . '/application/controller/follow.php');
-      break;
-      */
       case 'register':
         require(PROJECT_DIR . '/application/controller/register.php');
       break;
@@ -101,8 +96,8 @@ if (isset($_GET['_route_'])) {
         switch (true) {
 
           // Pages
-          case preg_match('|^follow[/\w_]?|i', $_GET['_route_']):
-            require(PROJECT_DIR . '/application/controller/follow.php');
+          case preg_match('|^people[/\w_]?|i', $_GET['_route_']):
+            require(PROJECT_DIR . '/application/controller/people.php');
           break;
 
           // 404
