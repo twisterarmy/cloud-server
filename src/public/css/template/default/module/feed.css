@@ -13,10 +13,6 @@
   color: #345b8e;
 }
 
-.moduleFeed .item a:hover {
-  text-decoration: underline;
-}
-
 .moduleFeed .item .avatar {
   position: absolute;
   top: 19px;
@@ -60,5 +56,4 @@
 .moduleFeed .item .message .info a:hover,
 .moduleFeed .item .message .info a:visited {
   color: #1c1d1e;
-  text-decoration: none;
 }
