@@ -5,7 +5,7 @@ if (!isset($_SESSION['userName'])) {
   header('Location: ' . PROJECT_HOST . '/login', true, 302);
 }
 
-$metaTitle = _('Following | Twisterarmy Cloud');
+$metaTitle = _('People | Twisterarmy Cloud');
 
 // Load dependencies
 $metaStyles = [
