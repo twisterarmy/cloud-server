@@ -2,18 +2,18 @@
 
 if (isset($_GET['hash'])) {
 
-  $filename = md5($_GET['hash']);
-  $filepath = PROJECT_DIR . '/cache/image/' . $filename . '.jpeg';
+  $fileName = md5($_GET['hash']);
+  $filePath = PROJECT_DIR . '/cache/image/' . $fileName . '.jpeg';
 
-  if (!file_exists($filepath)) {
+  if (!file_exists($filePath)) {
 
     $icon  = new Icon();
-    $image = $icon->generateImageResource($filename, 42, 42, false);
+    $image = $icon->generateImageResource($fileName, 42, 42, false);
 
-    file_put_contents($filepath, $image);
+    file_put_contents($filePath, $image);
   }
 
-  $image = file_get_contents($filepath);
+  $image = file_get_contents($filePath);
 
   header("Content-Type: image/jpeg");
 
