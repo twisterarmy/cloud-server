@@ -57,7 +57,7 @@ if (isset($_POST) && $_POST) {
       $errorUserName = _('Username required.');
     }
 
-    if ($_modelUser->userNameExists($userName)) {
+    if ($_modelUser->getUserId($userName)) {
 
       $errorUserName = _('Username already taken.');
     }

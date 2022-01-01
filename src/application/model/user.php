@@ -54,7 +54,7 @@ class ModelUser extends Model {
     }
   }
 
-  public function userNameExists(string $userName) {
+  public function getUserId(string $userName) {
 
     try {
 

@@ -61,7 +61,7 @@ if (isset($_POST) && $_POST) {
   if (!$errorUserName && !$errorUserPrivateKey) {
 
     // Check user exists
-    if ($_modelUser->userNameExists($userName)) {
+    if ($userId = $_modelUser->getUserId($userName)) {
 
       if ($_twister->importWallet($userName, $userPrivateKey)) {
 
@@ -78,6 +78,7 @@ if (isset($_POST) && $_POST) {
         session_start();
 
         $_SESSION['userName'] = $userName;
+        $_SESSION['userId']   = $userId;
 
         // Redirect
         header('Location: ' . PROJECT_HOST, true, 302);
