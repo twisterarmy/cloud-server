@@ -65,6 +65,9 @@ if (isset($_POST) && $_POST) {
 
       if ($_twister->importWallet($userName, $userPrivateKey)) {
 
+        // Follow self feed
+        $_twister->follow($userName, [$userName]);
+
         // @TODO: add login time
 
         // Auth
