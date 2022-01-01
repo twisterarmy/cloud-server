@@ -1,6 +1,6 @@
 .moduleFollowing .item {
   padding: 16px;
-  margin-bottom: 2px;
+  margin: 0 2px 2px 2px;
   color: #1c1d1e;
   background: rgba(238, 238, 238, 0.08);
   border-radius: 3px;
