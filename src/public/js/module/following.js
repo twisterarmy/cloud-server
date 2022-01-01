@@ -71,7 +71,7 @@ var ModuleFollowing = {
   loadProfile: function(list, userName) {
     $.ajax({
       url: 'api/user/profile',
-      type: 'POST',
+      type: 'GET',
       data: {
         userName: userName
       },
@@ -101,7 +101,7 @@ var ModuleFollowing = {
   loadAvatar: function(list, userName) {
     $.ajax({
       url: 'api/user/avatar',
-      type: 'POST',
+      type: 'GET',
       data: {
         userName: userName
       },

@@ -74,7 +74,7 @@ var ModuleFeed = {
   loadAvatar: function(feed, userName) {
     $.ajax({
       url: 'api/user/avatar',
-      type: 'POST',
+      type: 'GET',
       data: {
         userName: userName
       },

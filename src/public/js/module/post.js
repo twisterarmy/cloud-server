@@ -5,7 +5,7 @@ var ModulePost = {
   loadAvatar: function(element) {
     $.ajax({
       url: 'api/user/avatar',
-      type: 'POST',
+      type: 'GET',
       success: function (response) {
 
         if (response.success) {

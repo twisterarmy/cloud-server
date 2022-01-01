@@ -9,7 +9,7 @@ $response = [
 
 if (isset($_SESSION['userName'])) {
 
-  $userName = isset($_POST['userName']) ? $_POST['userName'] : $_SESSION['userName'];
+  $userName = isset($_POST['userName']) ? Filter::userName($_POST['userName']) : $_SESSION['userName'];
 
   $followingUsersTotal = 0;
   $followingUsers      = [];
