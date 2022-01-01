@@ -5,7 +5,8 @@ var ModuleFollowing = {
         append: function(list, userName) {
           $(list).append(
             $('<div/>', {
-              'class': 'item' + (userName == $(list).data('username') ? ' active' : '')
+              'class': 'item' + (userName == $(list).data('username') ? ' active' : ''),
+              'data-username': userName
             }).append(
               $('<div/>', {
                 'class': 'avatar'
@@ -23,9 +24,33 @@ var ModuleFollowing = {
               $('<div/>', {
                 'class': 'info'
               }).append(
-                $('<a/>', {
-                  'href': 'people/' + userName
-                }).append(userName)
+                $('<div/>', {
+                  'class': 'username'
+                }).append(
+                  $('<a/>', {
+                    'href': 'people/' + userName
+                  }).append(userName)
+                )
+              ).append(
+                $('<div/>', {
+                  'class': 'location'
+                })
+              ).append(
+                $('<div/>', {
+                  'class': 'bio'
+                })
+              ).append(
+                $('<div/>', {
+                  'class': 'url'
+                })
+              ).append(
+                $('<div/>', {
+                  'class': 'tox'
+                })
+              ).append(
+                $('<div/>', {
+                  'class': 'bitmessage'
+                })
               )
             ).append(
               $('<div/>', {
@@ -43,6 +68,36 @@ var ModuleFollowing = {
       }
     }
   },
+  loadProfile: function(list, userName) {
+    $.ajax({
+      url: 'api/user/profile',
+      type: 'POST',
+      data: {
+        userName: userName
+      },
+      success: function (response) {
+
+        if (response.success) {
+
+          $(list).find('div[data-username="' + userName + '"] .username > a').html(response.profile.fullName ? response.profile.fullName : response.profile.userName);
+          $(list).find('div[data-username="' + userName + '"] .location').html(response.profile.location);
+          $(list).find('div[data-username="' + userName + '"] .url').html($('<a/>',{'href':response.profile.url,'class':'bi bi-link','title':'Website'}));
+          $(list).find('div[data-username="' + userName + '"] .bio').html(response.profile.bio);
+          $(list).find('div[data-username="' + userName + '"] .bitMessage').html(response.profile.bitMessage == '' ? '' : $('<a/>',{'href':'bitmessage:' + response.profile.bitMessage,'class':'bi bi-send','title':'BitMessage'}));
+          $(list).find('div[data-username="' + userName + '"] .tox').html(response.profile.tox == '' ? '' : $('<a/>',{'href':'tox:' + response.profile.tox,'class':'bi bi-chat-square-dots','title':'TOX'}));
+
+
+        } else {
+
+          console.log(response.message);
+
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+         console.log(textStatus, errorThrown);
+      }
+    });
+  },
   load: function(list, reFresh) {
     $.ajax({
       url: 'api/follow/get',
@@ -57,11 +112,12 @@ var ModuleFollowing = {
 
           $(response.users).each(function() {
             ModuleFollowing.template.list.item.append(list, this.userName);
+            ModuleFollowing.loadProfile(list, this.userName);
           });
 
         } else {
 
-          alert(response.message);
+          console.log(response.message);
 
         }
       },
@@ -88,7 +144,7 @@ var ModuleFollowing = {
 
         } else {
 
-          alert(response.message);
+          console.log(response.message);
 
         }
       },
