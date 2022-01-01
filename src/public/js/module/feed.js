@@ -28,7 +28,8 @@ var ModuleFeed = {
           }
           $(feed).append(
             $('<div/>', {
-              'class': 'item'
+              'class': 'item',
+              'data-username': userName
             }).append(
               $('<div/>', {
                 'class': 'avatar'
@@ -70,6 +71,32 @@ var ModuleFeed = {
       }
     }
   },
+  loadAvatar: function(feed, userName) {
+    $.ajax({
+      url: 'api/user/avatar',
+      type: 'POST',
+      data: {
+        userName: userName
+      },
+      success: function (response) {
+
+        if (response.success) {
+
+          if (response.avatar) {
+            $(feed).find('div[data-username="' + userName + '"] .avatar img').attr('src', response.avatar);
+          }
+
+        } else {
+
+          console.log(response.message);
+
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+         console.log(textStatus, errorThrown);
+      }
+    });
+  },
   load: function(feed, reFresh) {
     $.ajax({
       url: 'api/post/get',
@@ -86,6 +113,7 @@ var ModuleFeed = {
 
           $(response.posts).each(function() {
             ModuleFeed.template.feed.item.append(feed, this.userName, this.time, this.message, this.reTwist);
+            ModuleFeed.loadAvatar(feed, this.userName);
           });
 
         } else {

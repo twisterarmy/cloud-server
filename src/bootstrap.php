@@ -7,6 +7,7 @@ require(PROJECT_DIR . '/application/model/model.php');
 require(PROJECT_DIR . '/application/model/block.php');
 require(PROJECT_DIR . '/application/model/user.php');
 require(PROJECT_DIR . '/application/model/profile.php');
+require(PROJECT_DIR . '/application/model/avatar.php');
 
 require(PROJECT_DIR . '/system/curl.php');
 require(PROJECT_DIR . '/system/twister.php');
@@ -37,6 +38,14 @@ $_modelUser = new ModelUser(
 );
 
 $_modelProfile = new ModelProfile(
+  DB_DATABASE,
+  DB_HOST,
+  DB_PORT,
+  DB_USER,
+  DB_PASSWORD
+);
+
+$_modelAvatar = new ModelAvatar(
   DB_DATABASE,
   DB_HOST,
   DB_PORT,
@@ -103,6 +112,9 @@ if (isset($_GET['_route_'])) {
       break;
       case 'api/user/profile':
         require(PROJECT_DIR . '/application/controller/api/user/profile.php');
+      break;
+      case 'api/user/avatar':
+        require(PROJECT_DIR . '/application/controller/api/user/avatar.php');
       break;
 
       // Multi-attribute pages

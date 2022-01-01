@@ -23,6 +23,8 @@
 .moduleFeed .item .avatar img {
   border-radius: 50%;
   border: 2px #fff solid;
+  width: 46px;
+  height: 46px;
 }
 
 .moduleFeed .item .message {

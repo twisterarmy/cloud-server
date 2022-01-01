@@ -98,6 +98,32 @@ var ModuleFollowing = {
       }
     });
   },
+  loadAvatar: function(list, userName) {
+    $.ajax({
+      url: 'api/user/avatar',
+      type: 'POST',
+      data: {
+        userName: userName
+      },
+      success: function (response) {
+
+        if (response.success) {
+
+          if (response.avatar) {
+            $(list).find('div[data-username="' + userName + '"] .avatar img').attr('src', response.avatar);
+          }
+
+        } else {
+
+          console.log(response.message);
+
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+         console.log(textStatus, errorThrown);
+      }
+    });
+  },
   load: function(list, reFresh) {
     $.ajax({
       url: 'api/follow/get',
@@ -112,6 +138,7 @@ var ModuleFollowing = {
 
           $(response.users).each(function() {
             ModuleFollowing.template.list.item.append(list, this.userName);
+            ModuleFollowing.loadAvatar(list, this.userName);
             ModuleFollowing.loadProfile(list, this.userName);
           });
 
