@@ -100,7 +100,7 @@ var ModuleFeed = {
   load: function(feed, reFresh) {
     $.ajax({
       url: 'api/post/get',
-      type: 'POST',
+      type: 'GET',
       data: {
         userName: $(feed).data('username')
       },

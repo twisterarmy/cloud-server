@@ -8,7 +8,7 @@ $response = [
 
 if (isset($_SESSION['userName'])) {
 
-  $userNames = isset($_POST['userName']) && Filter::userName($_POST['userName']) ? [$_POST['userName']] : $_twister->getFollowing($_SESSION['userName']);
+  $userNames = isset($_GET['userName']) && $_GET['userName'] ? [Filter::userName($_GET['userName'])] : $_twister->getFollowing($_SESSION['userName']);
 
   if ($result = $_twister->getPosts($userNames, APPLICATION_MAX_POST_FEED)) {
 
