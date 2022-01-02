@@ -81,7 +81,7 @@ var ModuleFollowing = {
 
           $(list).find('div[data-username="' + userName + '"] .username > a').html(response.profile.fullName ? response.profile.fullName : response.profile.userName);
           $(list).find('div[data-username="' + userName + '"] .location').html(response.profile.location);
-          $(list).find('div[data-username="' + userName + '"] .url').html(response.profile.url == '' ? '' : $('<a/>',{'href':response.profile.url,'class':'bi bi-link','title':'Website'}));
+          $(list).find('div[data-username="' + userName + '"] .url').html(response.profile.url == '' ? '' : $('<a/>',{'href':response.profile.url,'class':'bi bi-link','target':'_blank','title':'Website'}));
           $(list).find('div[data-username="' + userName + '"] .bio').html(response.profile.bio);
           $(list).find('div[data-username="' + userName + '"] .bitMessage').html(response.profile.bitMessage == '' ? '' : $('<a/>',{'href':'bitmessage:' + response.profile.bitMessage,'class':'bi bi-send','title':'BitMessage'}));
           $(list).find('div[data-username="' + userName + '"] .tox').html(response.profile.tox == '' ? '' : $('<a/>',{'href':'tox:' + response.profile.tox,'class':'bi bi-chat-square-dots','title':'TOX'}));
