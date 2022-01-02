@@ -6,6 +6,7 @@ if (!isset($_SESSION['userName'])) {
 }
 
 $metaTitle = _('People | Twisterarmy Cloud');
+$pageTitle = _('People');
 
 // Load dependencies
 $metaStyles = [
@@ -29,7 +30,11 @@ if (isset($_GET['_route_'])) {
   $route = explode('/', $_GET['_route_']);
 
   if (isset($route[1])) {
-    $_twister->follow($_SESSION['userName'], [filter::userName($route[1])]);
+
+    $userName = filter::userName($route[1]);
+    $_twister->follow($_SESSION['userName'], [$userName]);
+
+    $pageTitle = sprintf(_('@%s posts'), $userName);
   }
 }
 
