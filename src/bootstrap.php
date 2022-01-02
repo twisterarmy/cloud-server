@@ -17,6 +17,9 @@ require(PROJECT_DIR . '/system/helper/valid.php');
 require(PROJECT_DIR . '/system/helper/format.php');
 
 // Init libraries
+$_memcache = new Memcache();
+$_memcache->connect(MEMCACHE_HOST, MEMCACHE_PORT);
+
 $_twister = new Twister(
   new Curl(
     TWISTER_PROTOCOL,

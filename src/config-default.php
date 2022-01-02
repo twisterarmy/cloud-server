@@ -22,6 +22,10 @@ define('TWISTER_PROTOCOL', '');
 define('TWISTER_USER', '');
 define('TWISTER_PASSWORD', '');
 
+// MEMCACHE
+define('MEMCACHE_HOST', 'localhost');
+define('MEMCACHE_PORT', 11211);
+
 // COMMON
 define('APPLICATION_ALLOW_REGISTRATION', true);
 define('APPLICATION_FOLLOW_ON_REGISTRATION', []);
