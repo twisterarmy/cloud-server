@@ -80,6 +80,8 @@ if (isset($_POST) && $_POST) {
         $_SESSION['userName'] = $userName;
         $_SESSION['userId']   = $userId;
 
+        $_memcache->flush();
+
         // Redirect
         header('Location: ' . PROJECT_HOST, true, 302);
 
