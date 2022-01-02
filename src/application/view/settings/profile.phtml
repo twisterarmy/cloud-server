@@ -12,32 +12,32 @@
         <label for="fullName"><?php echo _('Full name') ?></label>
         <input type="text" name="fullName" id="fullName" value="<?php echo $fullName ?>" placeholder="<?php echo _('Not provided') ?>" />
         <?php if ($errorFullName) { ?>
-        <div class="c-5 mb-22"><?php echo $errorFullName ?></div>
+        <div class="error"><?php echo $errorFullName ?></div>
         <?php } ?>
         <label for="location"><?php echo _('Location') ?></label>
         <input type="text" name="location" id="location" value="<?php echo $location ?>" placeholder="<?php echo _('Not provided') ?>" />
         <?php if ($errorLocation) { ?>
-        <div class="c-5 mb-22"><?php echo $errorLocation ?></div>
+        <div class="error"><?php echo $errorLocation ?></div>
         <?php } ?>
         <label for="url"><?php echo _('Website') ?></label>
         <input type="text" name="url" id="url" value="<?php echo $url ?>" placeholder="<?php echo _('Not provided') ?>" />
         <?php if ($errorURL) { ?>
-        <div class="c-5 mb-22"><?php echo $errorURL ?></div>
+        <div class="error"><?php echo $errorURL ?></div>
         <?php } ?>
         <label for="bitMessage"><?php echo _('BitMessage') ?></label>
         <input type="text" name="bitMessage" id="bitMessage" value="<?php echo $bitMessage ?>" placeholder="<?php echo _('Not provided') ?>" />
         <?php if ($errorBitMessage) { ?>
-        <div class="c-5 mb-22"><?php echo $errorBitMessage ?></div>
+        <div class="error"><?php echo $errorBitMessage ?></div>
         <?php } ?>
         <label for="tox"><?php echo _('TOX') ?></label>
         <input type="text" name="tox" id="tox" value="<?php echo $tox ?>" placeholder="<?php echo _('Not provided') ?>" />
         <?php if ($errorTOX) { ?>
-        <div class="c-5 mb-22"><?php echo $errorTOX ?></div>
+        <div class="error"><?php echo $errorTOX ?></div>
         <?php } ?>
         <label for="bio"><?php echo _('Bio') ?></label>
         <textarea name="bio" id="bio" placeholder="<?php echo _('Not provided') ?>"><?php echo $bio ?></textarea>
         <?php if ($errorBio) { ?>
-        <div class="c-5 mb-22"><?php echo $errorBio ?></div>
+        <div class="error"><?php echo $errorBio ?></div>
         <?php } ?>
         <div class="actions">
           <button type="submit"><?php echo _('Save') ?></button>
