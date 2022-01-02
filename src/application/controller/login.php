@@ -80,7 +80,8 @@ if (isset($_POST) && $_POST) {
         $_SESSION['userName'] = $userName;
         $_SESSION['userId']   = $userId;
 
-        $_memcache->flush();
+        $_memcache->delete('api.user.profile.' . $userName);
+        $_memcache->delete('api.user.avatar.' . $userName);
 
         // Redirect
         header('Location: ' . PROJECT_HOST, true, 302);

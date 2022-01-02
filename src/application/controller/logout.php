@@ -3,9 +3,10 @@
 
 if (isset($_SESSION['userName'])) {
 
-    session_destroy();
+    $_memcache->delete('api.user.profile.' . $_SESSION['userName']);
+    $_memcache->delete('api.user.avatar.' . $_SESSION['userName']);
 
-    $_memcache->flush();
+    session_destroy();
 }
 
 header('Location: ' . PROJECT_HOST, true, 302);
