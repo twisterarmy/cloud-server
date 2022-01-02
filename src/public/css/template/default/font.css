@@ -1,17 +1,17 @@
 @font-face {
   font-family: 'Roboto-Regular';
-  src: url('/font/roboto/regular.eot');
-  src: url('/font/roboto/regular.eot?#iefix') format('embedded-opentype'),
-     /*url('/font/roboto/regular.woff2') format('woff2'), @TODO */
-       url('/font/roboto/regular.woff') format('woff'),
-       url('/font/roboto/regular.ttf') format('truetype'),
-       url('/font/roboto/regular.svg#robotolight') format('svg');
+  src: url('/css/template/default/font/roboto/regular.eot');
+  src: url('/css/template/default/font/roboto/regular.eot?#iefix') format('embedded-opentype'),
+     /*url('/css/template/default/font/roboto/regular.woff2') format('woff2'), @TODO */
+       url('/css/template/default/font/roboto/regular.woff') format('woff'),
+       url('/css/template/default/font/roboto/regular.ttf') format('truetype'),
+       url('/css/template/default/font/roboto/regular.svg#robotolight') format('svg');
   font-weight: normal;
   font-style: normal
 }
 
 @font-face {
   font-family: "bootstrap-icons";
-  src: url('/font/bi/set.woff2') format('woff2'),
-       url('/font/bi/set.woff') format('woff');
+  src: url('/css/template/default/font/bi/set.woff2') format('woff2'),
+       url('/css/template/default/font/bi/set.woff') format('woff');
 }
