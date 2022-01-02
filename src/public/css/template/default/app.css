@@ -6,10 +6,21 @@
   transition: all .5s ease-in; */
 }
 
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
 a,
 a:visited,
 a:active {
   color: #fff
+}
+
+input[type="text"],
+textarea {
+  padding: 9px 16px;
+  width: 100%;
+  border-radius: 3px;
+  background: rgb(238, 238, 238);
 }
 
 .container {

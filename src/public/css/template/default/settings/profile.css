@@ -1,0 +1,57 @@
+.settingsProfile form {
+  background: rgba(39, 46, 57, 0.28);
+  padding: 16px;
+  border-radius: 3px;
+}
+
+.settingsProfile form label {
+  color: #ccc;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.settingsProfile form input {
+  background: transparent;
+  margin-bottom: 16px;
+  width: 360px;
+  font-size: 15px;
+  color: #fff
+}
+
+.settingsProfile form input:focus {
+  background: rgb(238, 238, 238);
+  color: #1c1d1e
+}
+
+.settingsProfile form textarea {
+  background: transparent;
+  margin-bottom: 8px;
+  min-height: 80px;
+  font-size: 14px;
+  color: #fff
+}
+
+.settingsProfile form textarea:focus {
+  background: rgb(238, 238, 238);
+  color: #1c1d1e
+}
+
+.settingsProfile form button {
+  float: right;
+  padding: 10px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #337ab7;
+  color: #fff;
+  border: 0;
+  width: 100%;
+}
+
+.settingsProfile form button:hover {
+  background-color: #437baa;
+}
+
+.settingsProfile form .actions {
+  text-align: right;
+  overflow: hidden;
+}

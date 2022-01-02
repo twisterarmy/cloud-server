@@ -17,6 +17,21 @@ class ModelBlock extends Model {
     }
   }
 
+  public function getThisBlock() {
+
+    try {
+
+      $query = $this->_db->query("SELECT MAX(`blockId`) AS `blockId` FROM `block`");
+
+      return $query->fetch()['blockId'];
+
+    } catch (PDOException $e) {
+
+      trigger_error($e->getMessage());
+      return false;
+    }
+  }
+
   public function getNextBlock() {
 
     try {

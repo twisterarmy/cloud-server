@@ -1,0 +1,13 @@
+
+.moduleSettings .item {
+  display: block;
+  background: rgba(39, 46, 57, 0.28);
+  border-radius: 3px;
+  padding: 8px 16px;
+  margin: 0 2px 2px 2px;
+}
+
+.moduleSettings .item.active,
+.moduleSettings .item:hover {
+  background: #272E39;
+}

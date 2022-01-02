@@ -87,6 +87,9 @@ if (isset($_GET['_route_'])) {
       case 'register':
         require(PROJECT_DIR . '/application/controller/register.php');
       break;
+      case 'settings':
+        require(PROJECT_DIR . '/application/controller/settings/profile.php');
+      break;
 
       // API calls
       case 'api/image':

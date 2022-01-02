@@ -25,7 +25,7 @@ var ModuleFollowing = {
                 'class': 'info'
               }).append(
                 $('<div/>', {
-                  'class': 'username'
+                  'class': 'userName'
                 }).append(
                   $('<a/>', {
                     'href': 'people/' + userName
@@ -49,7 +49,7 @@ var ModuleFollowing = {
                 })
               ).append(
                 $('<div/>', {
-                  'class': 'bitmessage'
+                  'class': 'bitMessage'
                 })
               )
             ).append(
@@ -79,7 +79,7 @@ var ModuleFollowing = {
 
         if (response.success) {
 
-          $(list).find('div[data-username="' + userName + '"] .username > a').html(response.profile.fullName ? response.profile.fullName : response.profile.userName);
+          $(list).find('div[data-username="' + userName + '"] .userName > a').html(response.profile.fullName ? response.profile.fullName : response.profile.userName);
           $(list).find('div[data-username="' + userName + '"] .location').html(response.profile.location);
           $(list).find('div[data-username="' + userName + '"] .url').html(response.profile.url == '' ? '' : $('<a/>',{'href':response.profile.url,'class':'bi bi-link','target':'_blank','title':'Website'}));
           $(list).find('div[data-username="' + userName + '"] .bio').html(response.profile.bio);

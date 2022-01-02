@@ -47,12 +47,12 @@ if (isset($_SESSION['userName'])) {
       }
     }
 
-
     // Get latest version available
     if ($profileInfo = $_modelProfile->get($userId)) {
 
       $profile = [
         'userName'   => $userName,
+        'seq'        => $profileInfo['seq'],
         'fullName'   => $profileInfo['fullName'],
         'location'   => $profileInfo['location'],
         'url'        => $profileInfo['url'],

@@ -276,6 +276,47 @@ class Twister {
     return false;
   }
 
+  public function putDHT(string $peerAlias,
+                         string $command,
+                         string $flag, // s(ingle)/m(ulti)
+                         mixed  $value,
+                         string $sig_user,
+                         int    $seq) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'dhtput',
+        'params'  => [
+          $peerAlias,
+          $command,
+          $flag,
+          $value,
+          $sig_user,
+          $seq,
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result']; // Array
+      }
+    }
+
+    return false;
+  }
+
   public function createWalletUser(string $userName) {
 
     $this->_curl->prepare(

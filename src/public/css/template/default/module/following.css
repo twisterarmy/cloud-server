@@ -60,11 +60,11 @@
   font-size: 13px;
 }
 
-.moduleFollowing .item .info .username {
+.moduleFollowing .item .info .userName {
   margin-bottom: 8px;
 }
 
-.moduleFollowing .item .info .username a {
+.moduleFollowing .item .info .userName a {
   font-weight: bold;
 }
 
@@ -86,10 +86,11 @@
 .moduleFollowing .item .info .tox,
 .moduleFollowing .item .info .bitMessage {
   display: inline-block;
-  margin-right: 4px;
-  margin-top: 4px;
+  margin: 2px 4px;
+  font-size: 10px;
 }
 
 .moduleFollowing .item .info .tox {
-  font-size: 10px
+  font-size: 10px;
+  margin: 2px 4px;
 }
