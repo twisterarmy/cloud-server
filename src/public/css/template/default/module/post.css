@@ -17,6 +17,7 @@
   border: 2px #fff solid;
   width: 46px;
   height: 46px;
+  display: none
 }
 
 .modulePost .message {

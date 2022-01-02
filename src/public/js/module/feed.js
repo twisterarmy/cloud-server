@@ -38,7 +38,7 @@ var ModuleFeed = {
                   'href': 'people/' + userName
                 }).append(
                   $('<img/>', {
-                    'src': '/api/image?hash=' + userName,
+                    'src': '',
                     'alt': '',
                   })
                 )
@@ -83,7 +83,7 @@ var ModuleFeed = {
         if (response.success) {
 
           if (response.avatar) {
-            $(feed).find('div[data-username="' + userName + '"] .avatar img').attr('src', response.avatar);
+            $(feed).find('div[data-username="' + userName + '"] .avatar img').attr('src', response.avatar).show();
           }
 
         } else {

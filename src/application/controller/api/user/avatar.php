@@ -10,7 +10,15 @@ if (isset($_SESSION['userName'])) {
 
   $userName = isset($_GET['userName']) ? Filter::userName($_GET['userName']) : $_SESSION['userName'];
 
-  if ($avatarVersions = $_twister->getDHT($userName, 'avatar', 's')) {
+  if ($avatar = $_memcache->get('api.user.avatar.' . $userName)) {
+
+    $response = [
+      'success' => true,
+      'message' => _('Avatar successfully received from Cache'),
+      'avatar'  => $avatar
+    ];
+
+  } else if ($avatarVersions = $_twister->getDHT($userName, 'avatar', 's')) {
 
     // Check avatar exists
     if ($userId = $_modelUser->getUserId($userName)) {
@@ -36,9 +44,11 @@ if (isset($_SESSION['userName'])) {
 
       $response = [
         'success' => true,
-        'message' => _('Avatar successfully received'),
+        'message' => _('Avatar successfully received from DHT'),
         'avatar'  => $avatarInfo['data']
       ];
+
+      $_memcache->set('api.user.avatar.' . $userName, $avatarInfo['data'], MEMCACHE_COMPRESS, MEMCACHE_DHT_AVATAR_TIMEOUT);
 
     } else {
 
@@ -49,12 +59,26 @@ if (isset($_SESSION['userName'])) {
       ];
     }
 
+  // Generate identity icon
   } else {
 
+    $fileName = md5($userName);
+    $filePath = PROJECT_DIR . '/cache/image/' . $fileName . '.jpeg';
+
+    if (!file_exists($filePath)) {
+
+      $icon  = new Icon();
+      $image = $icon->generateImageResource($fileName, 42, 42, false);
+
+      file_put_contents($filePath, $image);
+    }
+
+    $image = file_get_contents($filePath);
+
     $response = [
-      'success' => false,
-      'message' => _('Could not receive avatar details'),
-      'avatar'  => false
+      'success' => true,
+      'message' => _('Avatar successfully received from Identity'),
+      'avatar'  => 'data:image/jpeg;base64,' . base64_encode($image)
     ];
 
   }

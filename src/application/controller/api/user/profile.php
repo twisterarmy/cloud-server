@@ -10,7 +10,15 @@ if (isset($_SESSION['userName'])) {
 
   $userName = isset($_GET['userName']) ? Filter::userName($_GET['userName']) : $_SESSION['userName'];
 
-  if ($userProfileVersions = $_twister->getDHT($userName, 'profile', 's')) {
+  if ($profile = $_memcache->get('api.user.profile.' . $userName)) {
+
+    $response = [
+      'success' => true,
+      'message' => _('Profile successfully received from Cache'),
+      'profile' => $profile
+    ];
+
+  } else if ($userProfileVersions = $_twister->getDHT($userName, 'profile', 's')) {
 
     // Check user exists
     if ($userId = $_modelUser->getUserId($userName)) {
@@ -43,19 +51,23 @@ if (isset($_SESSION['userName'])) {
     // Get latest version available
     if ($profileInfo = $_modelProfile->get($userId)) {
 
+      $profile = [
+        'userName'   => $userName,
+        'fullName'   => $profileInfo['fullName'],
+        'location'   => $profileInfo['location'],
+        'url'        => $profileInfo['url'],
+        'bitMessage' => $profileInfo['bitMessage'],
+        'tox'        => $profileInfo['tox'],
+        'bio'        => nl2br($profileInfo['bio']),
+      ];
+
       $response = [
         'success' => true,
-        'message' => _('Profile successfully received'),
-        'profile' => [
-          'userName'   => $userName,
-          'fullName'   => $profileInfo['fullName'],
-          'location'   => $profileInfo['location'],
-          'url'        => $profileInfo['url'],
-          'bitMessage' => $profileInfo['bitMessage'],
-          'tox'        => $profileInfo['tox'],
-          'bio'        => nl2br($profileInfo['bio']),
-        ]
+        'message' => _('Profile successfully received from DHT'),
+        'profile' => $profile
       ];
+
+      $_memcache->set('api.user.profile.' . $userName, $profile, MEMCACHE_COMPRESS, MEMCACHE_DHT_PROFILE_TIMEOUT);
 
     } else {
 

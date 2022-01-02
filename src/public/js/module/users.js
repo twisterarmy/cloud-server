@@ -14,7 +14,7 @@ var ModuleUsers = {
                   'href': 'people/' + userName
                 }).append(
                   $('<img/>', {
-                    'src': '/api/image?hash=' + userName,
+                    'src': '',
                     'alt': '',
                   })
                 )

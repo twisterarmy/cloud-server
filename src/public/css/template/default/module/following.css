@@ -32,6 +32,7 @@
   border: 2px #fff solid;
   width: 16px;
   height: 16px;
+  display: none
 }
 
 .moduleFollowing .item .action {

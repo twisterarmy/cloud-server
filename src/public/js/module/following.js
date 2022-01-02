@@ -15,7 +15,7 @@ var ModuleFollowing = {
                   'href': 'people/' + userName
                 }).append(
                   $('<img/>', {
-                    'src': '/api/image?hash=' + userName,
+                    'src': '',
                     'alt': '',
                   })
                 )
@@ -94,7 +94,7 @@ var ModuleFollowing = {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-         console.log(textStatus, errorThrown);
+        console.log(textStatus, errorThrown);
       }
     });
   },
@@ -110,7 +110,7 @@ var ModuleFollowing = {
         if (response.success) {
 
           if (response.avatar) {
-            $(list).find('div[data-username="' + userName + '"] .avatar img').attr('src', response.avatar);
+            $(list).find('div[data-username="' + userName + '"] .avatar img').attr('src', response.avatar).show();
           }
 
         } else {
@@ -120,7 +120,7 @@ var ModuleFollowing = {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-         console.log(textStatus, errorThrown);
+        console.log(textStatus, errorThrown);
       }
     });
   },
@@ -149,7 +149,7 @@ var ModuleFollowing = {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-         console.log(textStatus, errorThrown);
+        console.log(textStatus, errorThrown);
       }
     });
   },
@@ -176,7 +176,7 @@ var ModuleFollowing = {
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-         console.log(textStatus, errorThrown);
+        console.log(textStatus, errorThrown);
       }
     });
   },

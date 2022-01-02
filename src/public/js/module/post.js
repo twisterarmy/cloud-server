@@ -11,7 +11,7 @@ var ModulePost = {
         if (response.success) {
 
           if (response.avatar) {
-            $(element).find('img').attr('src', response.avatar);
+            $(element).find('img').attr('src', response.avatar).show();
           }
 
         } else {
@@ -27,7 +27,7 @@ var ModulePost = {
   },
   add: function() {
 
-    var input  = $('#modulePost > .message > textarea');
+    var input = $('#modulePost > .message > textarea');
 
     $.ajax({
       url: 'api/post/add',
