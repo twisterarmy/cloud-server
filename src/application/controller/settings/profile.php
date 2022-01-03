@@ -68,6 +68,11 @@ if (isset($_POST) && !empty($_POST)) {
     // Get avatar revision
     $avatarSeq = $_modelAvatar->getMaxSeq($_SESSION['userId']) + 1;
 
+    // Custom initial revision
+    if ($avatarSeq == 1) {
+        $avatarSeq = $avatarSeq + TWISTER_SEQ_START_FROM;
+    }
+
     // Save avatar revision to DHT
     $_twister->putDHT($_SESSION['userName'],
                       'avatar',
@@ -94,6 +99,11 @@ if (isset($_POST) && !empty($_POST)) {
 
   // Get profile revision
   $profileSeq = $_modelProfile->getMaxSeq($_SESSION['userId']) + 1;
+
+  // Custom initial revision
+  if ($profileSeq == 1) {
+      $profileSeq = $profileSeq + TWISTER_SEQ_START_FROM;
+  }
 
   // Save profile revision to DHT
   $_twister->putDHT($_SESSION['userName'],

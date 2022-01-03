@@ -22,6 +22,8 @@ define('TWISTER_PROTOCOL', '');
 define('TWISTER_USER', '');
 define('TWISTER_PASSWORD', '');
 
+define('TWISTER_SEQ_START_FROM', 0); // Start initial DHT revision from
+
 // MEMCACHE
 define('MEMCACHE_HOST', 'localhost');
 define('MEMCACHE_PORT', 11211);
