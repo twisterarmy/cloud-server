@@ -48,6 +48,12 @@ class Format {
 
   public static function post(string $text) {
 
+    $text = preg_replace("|\*(.*?)\*|i", "<b>$1</b>", $text);
+    $text = preg_replace("|\~(.*?)\~|i", "<i>$1</i>", $text);
+    $text = preg_replace("|\_(.*?)\_|i", "<u>$1</u>", $text);
+    $text = preg_replace("|\-(.*?)\-|i", "<s>$1</s>", $text);
+    $text = preg_replace("|\`(.*?)\`|i", "<samp>$1</samp>", $text);
+
     $text = preg_replace("|@([a-zA-Z0-9_]+)|i", "<a href=\"people/$1\">@$1</a>", $text);
     $text = preg_replace("|((https?://)+([\d\w\.-]+\.[\w\.]{2,6})[^\s\]\[\<\>]*/?)|i", "<a href=\"$1\" target=\"_blank\">$3</a>", $text);
     $text = nl2br($text);

@@ -27,6 +27,13 @@ textarea {
   border: 0;
 }
 
+samp {
+  background: #777;
+  padding: 2px 4px;
+  color: #fff;
+  font-size: 11px;
+}
+
 /* backgrounds */
 .bg-logo-1 {
   background-image: url('/css/template/default/image/logo-1.png');
