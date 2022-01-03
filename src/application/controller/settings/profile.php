@@ -52,7 +52,7 @@ if (isset($_POST) && !empty($_POST)) {
   $blockId = $_modelBlock->getThisBlock();
 
   // Avatar provided
-  if (isset($_FILES['avatar']['tmp_name']) && getimagesize($_FILES['avatar']['tmp_name'])) {
+  if (isset($_FILES['avatar']['tmp_name']) && file_exists($_FILES['avatar']['tmp_name']) && getimagesize($_FILES['avatar']['tmp_name'])) {
 
     // Prepare image
     $image = new Imagick();
