@@ -7,12 +7,24 @@ $response = [
 
 if (isset($_SESSION['userName']) && isset($_POST['userName'])) {
 
-  $result = $_twister->unFollow($_SESSION['userName'], [$_POST['userName']]);
+  $userName = Filter::userName($_POST['userName']);
 
-  $response = [
-    'success' => true,
-    'message' => _('Unfollowed successfully'),
-  ];
+  if ($_SESSION['userName'] != $userName) {
+
+    $_twister->unFollow($_SESSION['userName'], [$userName]);
+
+    $response = [
+      'success' => true,
+      'message' => _('Unfollowed successfully'),
+    ];
+
+  } else {
+
+    $response = [
+      'success' => false,
+      'message' => _("Can't unfollow yourself"),
+    ];
+  }
 
 } else {
 
