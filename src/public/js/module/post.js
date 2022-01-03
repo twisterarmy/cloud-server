@@ -27,7 +27,7 @@ var ModulePost = {
   },
   add: function() {
 
-    var input = $('#modulePost > .message > textarea');
+    var input = $('#modulePost .message textarea');
 
     $.ajax({
       url: 'api/post/add',
