@@ -34,7 +34,7 @@
 }
 
 .modulePost .message textarea {
-  height: 52px;
+  height: 70px;
   width: 100%;
   padding: 16px 8px;
   border-radius: 3px;
@@ -48,7 +48,7 @@
 }
 
 .modulePost textarea:focus {
-  height: 80px;
+  height: 90px;
 }
 
 .modulePost .button {
