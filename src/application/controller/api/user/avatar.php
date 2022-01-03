@@ -29,7 +29,7 @@ if (isset($_SESSION['userName'])) {
       ];
 
     /*
-    * Step 2: try to obtain profile from DHT
+    * Step 2: try to obtain avatar from DHT
     *
     * */
     } else if ($dhtAvatarRevisions = $_twister->getDHTAvatarRevisions($userName)) {
@@ -103,7 +103,7 @@ if (isset($_SESSION['userName'])) {
     $response = [
       'success' => false,
       'message' => _('Requested user not found'),
-      'profile' => []
+      'avatar'  => []
     ];
   }
 
