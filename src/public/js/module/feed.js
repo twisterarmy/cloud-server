@@ -2,8 +2,8 @@ var ModuleFeed = {
   template: {
     feed: {
       item: {
-        append: function(feed, userName, time, message, reTwist) {
-          if (reTwist === undefined || reTwist.length == 0) {
+        append: function(feed, item) {
+          if (item.reTwist === undefined || item.reTwist.length == 0) {
             var rt = false;
           } else {
             var rt = $(
@@ -14,28 +14,28 @@ var ModuleFeed = {
                   'class': 'info'
                 }).append(
                   $('<a/>', {
-                    'href': 'people/' + reTwist.userName
-                  }).append(reTwist.userName)
+                    'href': 'people/' + item.reTwist.userName
+                  }).append(item.reTwist.userName)
                 ).append(
                   $('<span/>', {
                     'class': 'time'
                   }).append(
-                    reTwist.time
+                    item.reTwist.time
                   )
                 )
-              ).append(reTwist.message)
+              ).append(item.reTwist.message)
             );
           }
           $(feed).append(
             $('<div/>', {
               'class': 'item',
-              'data-username': userName
+              'data-username': item.userName,
             }).append(
               $('<div/>', {
                 'class': 'avatar'
               }).append(
                 $('<a/>', {
-                  'href': 'people/' + userName
+                  'href': 'people/' + item.userName
                 }).append(
                   $('<img/>', {
                     'src': '',
@@ -51,19 +51,19 @@ var ModuleFeed = {
                   'class': 'info'
                 }).append(
                   $('<a/>', {
-                    'href': 'people/' + userName
-                  }).append(userName)
+                    'href': 'people/' + item.userName
+                  }).append(item.userName)
                 ).append(
                   $('<span/>', {
                     'class': 'time'
                   }).append(
-                    time
+                    item.time
                   )
                 )
               ).append(rt).append(
                 $('<div/>', {
-                  'class': (message != '' ? 'quote' : '')
-                }).append(message)
+                  'class': (item.message != '' ? 'quote' : '')
+                }).append(item.message)
               )
             )
           );
@@ -112,7 +112,7 @@ var ModuleFeed = {
           }
 
           $(response.posts).each(function() {
-            ModuleFeed.template.feed.item.append(feed, this.userName, this.time, this.message, this.reTwist);
+            ModuleFeed.template.feed.item.append(feed, this);
             ModuleFeed.loadAvatar(feed, this.userName);
           });
 
