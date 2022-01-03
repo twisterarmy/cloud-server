@@ -17,6 +17,38 @@ class Valid {
     }
   }
 
+  public static function base64(string $string) {
+
+    if (base64_encode(base64_decode($string, true)) === $string) {
+
+      return true;
+
+    } else {
+
+      return false;
+    }
+  }
+
+  public static function base64image(string $string) {
+
+    $string = str_replace([
+      'data:image/jpeg;base64,',
+      'data:image/jpg;base64,',
+      'data:image/gif;base64,',
+      'data:image/png;base64,',
+      'data:image/webp;base64,',
+    ], '', $string);
+
+    if (self::base64($string) && imagecreatefromstring(base64_decode($string))) {
+
+      return true;
+
+    } else {
+
+      return false;
+    }
+  }
+
   public static function userName(string $userName) {
 
     if (preg_match('/[^a-zA-Z0-9_]+/u', $userName)) {

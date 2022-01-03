@@ -19,7 +19,7 @@ class Filter {
 
   public static function string(mixed $string) {
 
-    return htmlentities($string, ENT_QUOTES, 'UTF-8');
+    return (string) $string;
   }
 
   public static function int(mixed $int) {

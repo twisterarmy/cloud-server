@@ -40,24 +40,26 @@ class Format {
           } else {
             return sprintf(_('%s %s later'), $r, self::plural($r, $v));
           }
-
-
       }
     }
   }
 
-  public static function post(string $text) {
+  public static function text(string $string) {
 
-    $text = preg_replace("|\*([\S]+)\*|i", "<b>$1</b>", $text);
-    $text = preg_replace("|\~([\S]+)\~|i", "<i>$1</i>", $text);
-    $text = preg_replace("|\_([\S]+)\_|i", "<u>$1</u>", $text);
-    $text = preg_replace("|\-([\S]+)\-|i", "<s>$1</s>", $text);
-    $text = preg_replace("|\`([\S]+)\`|i", "<samp>$1</samp>", $text);
+    $string = html_entity_decode($string, ENT_QUOTES, 'UTF-8');
+    $string = htmlentities($string, ENT_QUOTES, 'UTF-8');
 
-    $text = preg_replace("|@([a-zA-Z0-9_]+)|i", "<a href=\"people/$1\">@$1</a>", $text);
-    $text = preg_replace("|((https?://)+([\d\w\.-]+\.[\w\.]{2,6})[^\s\]\[\<\>]*/?)|i", "<a href=\"$1\" target=\"_blank\">$3</a>", $text);
-    $text = nl2br($text);
+    $string = preg_replace("|\*([\S]+)\*|i", "<b>$1</b>", $string);
+    $string = preg_replace("|\~([\S]+)\~|i", "<i>$1</i>", $string);
+    $string = preg_replace("|\_([\S]+)\_|i", "<u>$1</u>", $string);
+    $string = preg_replace("|\-([\S]+)\-|i", "<s>$1</s>", $string);
+    $string = preg_replace("|\`([\S]+)\`|i", "<samp>$1</samp>", $string);
 
-    return $text;
+    $string = preg_replace("|@([a-zA-Z0-9_]+)|i", "<a href=\"people/$1\">@$1</a>", $string);
+    $string = preg_replace("|((https?://)+([\d\w\.-]+\.[\w\.]{2,6})[^\s\]\[\<\>]*/?)|i", "<a href=\"$1\" target=\"_blank\">$3</a>", $string);
+
+    $string = nl2br($string);
+
+    return $string;
   }
 }

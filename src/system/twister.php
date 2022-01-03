@@ -243,6 +243,115 @@ class Twister {
     return false;
   }
 
+  public function getDHTProfileRevisions(string $userName) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'dhtget',
+        'params'  => [
+          $userName,
+          'profile',
+          's'
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        $dhtProfileVersions = [];
+        foreach ((array) $response['result'] as $dhtProfileVersion) {
+
+          // Required fields validation needed to make the DB revision compare
+          if (isset($dhtProfileVersion['p']['height']) &&
+              isset($dhtProfileVersion['p']['seq']) &&
+              isset($dhtProfileVersion['p']['time'])) {
+
+              // Format revision response
+              $dhtProfileVersions[] = [
+                'height'     => (int) $dhtProfileVersion['p']['height'],
+                'seq'        => (int) $dhtProfileVersion['p']['seq'],
+                'time'       => (int) $dhtProfileVersion['p']['time'],
+
+                'fullName'   => isset($dhtProfileVersion['p']['v']['fullname'])   ? (string) $dhtProfileVersion['p']['v']['fullname']   : '',
+                'bio'        => isset($dhtProfileVersion['p']['v']['bio'])        ? (string) $dhtProfileVersion['p']['v']['bio']        : '',
+                'location'   => isset($dhtProfileVersion['p']['v']['location'])   ? (string) $dhtProfileVersion['p']['v']['location']   : '',
+                'url'        => isset($dhtProfileVersion['p']['v']['url'])        ? (string) $dhtProfileVersion['p']['v']['url']        : '',
+                'bitMessage' => isset($dhtProfileVersion['p']['v']['bitmessage']) ? (string) $dhtProfileVersion['p']['v']['bitmessage'] : '',
+                'tox'        => isset($dhtProfileVersion['p']['v']['tox'])        ? (string) $dhtProfileVersion['p']['v']['tox']        : '',
+              ];
+          }
+        }
+
+        return $dhtProfileVersions; // Formatted array
+      }
+    }
+
+    return [];
+  }
+
+  public function getDHTAvatarRevisions(string $userName) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'dhtget',
+        'params'  => [
+          $userName,
+          'avatar',
+          's'
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        $dhtAvatarVersions = [];
+        foreach ((array) $response['result'] as $dhtAvatarVersion) {
+
+          // Required fields validation needed to make the DB revision compare
+          if (isset($dhtAvatarVersion['p']['height']) &&
+              isset($dhtAvatarVersion['p']['seq']) &&
+              isset($dhtAvatarVersion['p']['time'])) {
+
+              // Format revision response
+              $dhtAvatarVersions[] = [
+                'height' => (int) $dhtAvatarVersion['p']['height'],
+                'seq'    => (int) $dhtAvatarVersion['p']['seq'],
+                'time'   => (int) $dhtAvatarVersion['p']['time'],
+
+                'data'   => isset($dhtAvatarVersion['p']['v']) ? (string) $dhtAvatarVersion['p']['v'] : '',
+              ];
+          }
+        }
+
+        return $dhtAvatarVersions; // Formatted array
+      }
+    }
+
+    return [];
+  }
+
   public function getDHT(string $userName, string $command, string $flag) {
 
     $this->_curl->prepare(
