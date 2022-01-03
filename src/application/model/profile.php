@@ -23,6 +23,23 @@ class ModelProfile extends Model {
     }
   }
 
+  public function getMaxSeq(int $userId) {
+
+    try {
+
+      $query = $this->_db->prepare("SELECT MAX(`seq`) + 1 AS `revision` FROM  `profile` WHERE `userId` = ?");
+
+      $query->execute([$userId]);
+
+      return (int) $query->fetch()['revision'];
+
+    } catch (PDOException $e) {
+
+      trigger_error($e->getMessage());
+      return false;
+    }
+  }
+
   public function versionExists(int $userId, int $blockId, int $seq) {
 
     try {

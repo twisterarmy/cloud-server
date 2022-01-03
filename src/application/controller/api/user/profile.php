@@ -52,7 +52,6 @@ if (isset($_SESSION['userName'])) {
 
       $profile = [
         'userName'   => $userName,
-        'seq'        => $profileInfo['seq'],
         'fullName'   => $profileInfo['fullName'],
         'location'   => $profileInfo['location'],
         'url'        => $profileInfo['url'],

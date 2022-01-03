@@ -7,8 +7,11 @@
   <div class="left">
     <div class="settingsProfile">
       <h1><?php echo $pageTitle ?></h1>
-      <form action="settings" name="profile" method="POST">
-        <input type="hidden" name="seq" value="<?php echo $seq ?>" />
+      <form action="settings" name="profile" enctype="multipart/form-data" method="POST">
+        <div class="avatar">
+          <img src="<?php echo $avatar ?>" alt="" />
+          <input name="avatar" type="file" value="" />
+        </div>
         <label for="fullName"><?php echo _('Full name') ?></label>
         <input type="text" name="fullName" id="fullName" value="<?php echo $fullName ?>" placeholder="<?php echo _('Not provided') ?>" />
         <?php if ($errorFullName) { ?>

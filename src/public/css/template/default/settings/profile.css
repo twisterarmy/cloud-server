@@ -1,3 +1,17 @@
+.settingsProfile .avatar {
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px #4d5666 solid;;
+}
+
+.settingsProfile .avatar img {
+  border-radius: 50%;
+  border: 2px #fff solid;
+  vertical-align: middle;
+  margin-right: 16px;
+  width: 42px;
+}
+
 .settingsProfile form {
   background: rgba(39, 46, 57, 0.28);
   padding: 16px;
@@ -18,7 +32,11 @@
   color: #fff
 }
 
-.settingsProfile form input:focus {
+.settingsProfile form input[type="file"] {
+  width: 302px
+}
+
+.settingsProfile form input[type="text"]:focus {
   background: rgb(238, 238, 238);
   color: #1c1d1e
 }
