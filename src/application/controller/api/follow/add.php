@@ -7,7 +7,7 @@ $response = [
 
 if (isset($_SESSION['userName']) && isset($_POST['userName'])) {
 
-  $result = $_twister->follow($_SESSION['userName'], [$_POST['userName']]);
+  $result = $_twister->follow($_SESSION['userName'], [Filter::userName($_POST['userName'])]);
 
   $response = [
     'success' => true,

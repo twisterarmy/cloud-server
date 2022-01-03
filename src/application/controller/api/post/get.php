@@ -8,7 +8,19 @@ $response = [
 
 if (isset($_SESSION['userName'])) {
 
-  $userNames = isset($_GET['userName']) && $_GET['userName'] ? [Filter::userName($_GET['userName'])] : $_twister->getFollowing($_SESSION['userName']);
+  $userNames = [];
+
+  if (isset($_GET['userName']) && !empty($_GET['userName'])) {
+
+    $userNames[] = Filter::userName($_GET['userName']);
+
+  } else {
+
+    foreach ((array) $_twister->getFollowing($_SESSION['userName']) as $followingUserName) {
+
+      $userNames[] = Filter::userName($followingUserName);
+    }
+  }
 
   if ($result = $_twister->getPosts($userNames, APPLICATION_MAX_POST_FEED)) {
 
@@ -16,14 +28,14 @@ if (isset($_SESSION['userName'])) {
     foreach ($result as $post) {
 
       // Split message parts
-      $messages = [$post['userpost']['msg']];
+      $messages = [Filter::string($post['userpost']['msg'])];
 
       for ($i = 0; $i <= APPLICATION_MAX_POST_SPLIT; $i++) {
 
         $n = sprintf('msg%s', $i);
 
         if (isset($post['userpost'][$n])) {
-          $messages[] = $post['userpost'][$n];
+          $messages[] = Filter::string($post['userpost'][$n]);
         }
       }
 
@@ -32,29 +44,29 @@ if (isset($_SESSION['userName'])) {
       if (isset($post['userpost']['rt'])) {
 
         // Split reTwists parts
-        $reTwists = [$post['userpost']['rt']['msg']];
+        $reTwists = [Filter::string($post['userpost']['rt']['msg'])];
 
         for ($i = 0; $i <= APPLICATION_MAX_POST_SPLIT; $i++) {
 
           $n = sprintf('msg%s', $i);
 
           if (isset($post['userpost']['rt'][$n])) {
-            $reTwists[] = $post['userpost']['rt'][$n];
+            $reTwists[] = Filter::string($post['userpost']['rt'][$n]);
           }
         }
 
         $reTwist = [
           'message'  => Format::post(implode('', $reTwists)),
-          'time'     => Format::time($post['userpost']['rt']['time']),
-          'userName' => $post['userpost']['rt']['n'],
+          'time'     => Format::time(Filter::int($post['userpost']['rt']['time'])),
+          'userName' => Filter::userName($post['userpost']['rt']['n']),
           'reTwist'  => $reTwist,
         ];
       }
 
       $posts[] = [
         'message'  => Format::post(implode('', $messages)),
-        'time'     => Format::time($post['userpost']['time']),
-        'userName' => $post['userpost']['n'],
+        'time'     => Format::time(Filter::int($post['userpost']['time'])),
+        'userName' => Filter::userName($post['userpost']['n']),
         'reTwist'  => $reTwist,
       ];
     }

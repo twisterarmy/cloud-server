@@ -41,12 +41,12 @@ $errorBio        = false;
 if (isset($_POST) && !empty($_POST)) {
 
   // Prepare request
-  $fullName   = isset($_POST['fullName'])   ? $_POST['fullName']   : '';
-  $location   = isset($_POST['location'])   ? $_POST['location']   : '';
-  $url        = isset($_POST['url'])        ? $_POST['url']        : '';
-  $bitMessage = isset($_POST['bitMessage']) ? $_POST['bitMessage'] : '';
-  $tox        = isset($_POST['tox'])        ? $_POST['tox']        : '';
-  $bio        = isset($_POST['bio'])        ? $_POST['bio']        : '';
+  $fullName   = isset($_POST['fullName'])   ? Filter::string($_POST['fullName'])   : '';
+  $location   = isset($_POST['location'])   ? Filter::string($_POST['location'])   : '';
+  $url        = isset($_POST['url'])        ? Filter::string($_POST['url'])        : '';
+  $bitMessage = isset($_POST['bitMessage']) ? Filter::string($_POST['bitMessage']) : '';
+  $tox        = isset($_POST['tox'])        ? Filter::string($_POST['tox'])        : '';
+  $bio        = isset($_POST['bio'])        ? Filter::string($_POST['bio'])        : '';
 
   // Get current block number
   $blockId = $_modelBlock->getThisBlock();
@@ -94,7 +94,7 @@ if (isset($_POST) && !empty($_POST)) {
     }
 
     // Update avatar cache
-    $_memcache->set('api.user.avatar.' . $_SESSION['userName'], $avatar, MEMCACHE_COMPRESS, MEMCACHE_DHT_AVATAR_TIMEOUT);
+    $_memcache->replace('api.user.avatar.' . $_SESSION['userName'], $avatar, MEMCACHE_COMPRESS, MEMCACHE_DHT_AVATAR_TIMEOUT);
   }
 
   // Get profile revision
@@ -164,14 +164,14 @@ if ($userAvatar = $_memcache->get('api.user.avatar.' . $_SESSION['userName'])) {
   foreach ($avatarVersions as $avatarVersion) {
 
     if (!$_modelAvatar->versionExists($_SESSION['userId'],
-                                      $avatarVersion['p']['height'],
-                                      $avatarVersion['p']['seq'])) {
+                                      Filter::int($avatarVersion['p']['height']),
+                                      Filter::int($avatarVersion['p']['seq']))) {
 
       $_modelAvatar->add( $_SESSION['userId'],
-                          $avatarVersion['p']['height'],
-                          $avatarVersion['p']['seq'],
-                          $avatarVersion['p']['time'],
-                          $avatarVersion['p']['v']);
+                          Filter::int($avatarVersion['p']['height']),
+                          Filter::int($avatarVersion['p']['seq']),
+                          Filter::int($avatarVersion['p']['time']),
+                          Filter::string($avatarVersion['p']['v']));
     }
   }
 
@@ -200,7 +200,7 @@ if ($userAvatar = $_memcache->get('api.user.avatar.' . $_SESSION['userName'])) {
   $avatar = sprintf('data:image/jpeg;base64,%s', base64_encode(file_get_contents($filePath)));
 }
 
-// Get profile details
+// Get profile details from cache
 if ($profile = $_memcache->get('api.user.profile.' . $_SESSION['userName'])) {
 
   $fullName   = $profile['fullName'];
@@ -210,28 +210,32 @@ if ($profile = $_memcache->get('api.user.profile.' . $_SESSION['userName'])) {
   $tox        = $profile['tox'];
   $bio        = $profile['bio'];
 
+// Get profile details from DHT
 } else if ($userProfileVersions = $_twister->getDHT($_SESSION['userName'], 'profile', 's')) {
 
   // Add DHT version if not exists
   foreach ($userProfileVersions as $userProfileVersion) {
 
     if (!$_modelProfile->versionExists($_SESSION['userId'],
-                                       $userProfileVersion['p']['height'],
-                                       $userProfileVersion['p']['seq'])) {
+                                       Filter::int($userProfileVersion['p']['height']),
+                                       Filter::int($userProfileVersion['p']['seq']))) {
 
-      $profile = $userProfileVersion['p']['v'];
+      if (isset($userProfileVersion['p']['v'])) {
 
-      $_modelProfile->add($_SESSION['userId'],
-                          $userProfileVersion['p']['height'],
-                          $userProfileVersion['p']['seq'],
-                          $userProfileVersion['p']['time'],
+        $profile = $userProfileVersion['p']['v'];
 
-                          isset($profile['fullname'])   ? $profile['fullname']   : '',
-                          isset($profile['bio'])        ? $profile['bio']        : '',
-                          isset($profile['location'])   ? $profile['location']   : '',
-                          isset($profile['url'])        ? $profile['url']        : '',
-                          isset($profile['bitmessage']) ? $profile['bitmessage'] : '',
-                          isset($profile['tox'])        ? $profile['tox']        : '');
+        $_modelProfile->add($_SESSION['userId'],
+                            Filter::int($userProfileVersion['p']['height']),
+                            Filter::int($userProfileVersion['p']['seq']),
+                            Filter::int($userProfileVersion['p']['time']),
+
+                            isset($profile['fullname'])   ? Filter::string($profile['fullname'])   : '',
+                            isset($profile['bio'])        ? Filter::string($profile['bio'])        : '',
+                            isset($profile['location'])   ? Filter::string($profile['location'])   : '',
+                            isset($profile['url'])        ? Filter::string($profile['url'])        : '',
+                            isset($profile['bitmessage']) ? Filter::string($profile['bitmessage']) : '',
+                            isset($profile['tox'])        ? Filter::string($profile['tox'])        : '');
+      }
     }
   }
 
@@ -256,7 +260,6 @@ if ($profile = $_memcache->get('api.user.profile.' . $_SESSION['userName'])) {
     $bio        = $profile['bio'];
 
     $_memcache->set('api.user.profile.' . $_SESSION['userName'], $profile, MEMCACHE_COMPRESS, MEMCACHE_DHT_PROFILE_TIMEOUT);
-
   }
 }
 

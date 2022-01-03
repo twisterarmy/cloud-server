@@ -9,6 +9,7 @@ require(PROJECT_DIR . '/application/model/block.php');
 
 require(PROJECT_DIR . '/system/curl.php');
 require(PROJECT_DIR . '/system/twister.php');
+require(PROJECT_DIR . '/system/helper/filter.php');
 
 // Init libraries
 $_twister = new Twister(
@@ -51,6 +52,8 @@ while (true) {
     exit;
   }
 
+  $blockHash = Filter::blockHash($blockHash);
+
   if (!$block = $_twister->getBlock($blockHash)) {
 
     trigger_error(sprintf('could not receive block info on %s (%s)', $nextBlock, $blockHash));
@@ -64,6 +67,8 @@ while (true) {
 
     // Add users
     foreach ($block['usernames'] as $userName) {
+
+      $userName = Filter::userName($userName);
 
       if (!$_modelUser->addUser($blockId, $userName)) {
         trigger_error(sprintf('could not add user %s in block %s)', $userName, $blockId));

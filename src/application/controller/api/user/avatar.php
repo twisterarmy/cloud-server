@@ -27,14 +27,14 @@ if (isset($_SESSION['userName'])) {
       foreach ($avatarVersions as $avatarVersion) {
 
         if (!$_modelAvatar->versionExists($userId,
-                                           $avatarVersion['p']['height'],
-                                           $avatarVersion['p']['seq'])) {
+                                          Filter::int($avatarVersion['p']['height']),
+                                          Filter::int($avatarVersion['p']['seq']))) {
 
           $_modelAvatar->add( $userId,
-                              $avatarVersion['p']['height'],
-                              $avatarVersion['p']['seq'],
-                              $avatarVersion['p']['time'],
-                              $avatarVersion['p']['v']);
+                              Filter::int($avatarVersion['p']['height']),
+                              Filter::int($avatarVersion['p']['seq']),
+                              Filter::int($avatarVersion['p']['time']),
+                              Filter::string($avatarVersion['p']['v']));
         }
       }
     }

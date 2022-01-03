@@ -83,15 +83,7 @@ if (isset($_POST) && $_POST) {
         require(PROJECT_DIR . '/application/view/welcome.phtml');
 
         exit;
-
-      } else {
-
-        trigger_error($_twister->getError());
       }
-
-    } else {
-
-      trigger_error($_twister->getError());
     }
   }
 }

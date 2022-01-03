@@ -27,22 +27,22 @@ if (isset($_SESSION['userName'])) {
       foreach ($userProfileVersions as $userProfileVersion) {
 
         if (!$_modelProfile->versionExists($userId,
-                                           $userProfileVersion['p']['height'],
-                                           $userProfileVersion['p']['seq'])) {
+                                           Filter::int($userProfileVersion['p']['height']),
+                                           Filter::int($userProfileVersion['p']['seq']))) {
 
           $profile = $userProfileVersion['p']['v'];
 
           $_modelProfile->add($userId,
-                              $userProfileVersion['p']['height'],
-                              $userProfileVersion['p']['seq'],
-                              $userProfileVersion['p']['time'],
+                              Filter::int($userProfileVersion['p']['height']),
+                              Filter::int($userProfileVersion['p']['seq']),
+                              Filter::int($userProfileVersion['p']['time']),
 
-                              isset($profile['fullname'])   ? $profile['fullname']   : '',
-                              isset($profile['bio'])        ? $profile['bio']        : '',
-                              isset($profile['location'])   ? $profile['location']   : '',
-                              isset($profile['url'])        ? $profile['url']        : '',
-                              isset($profile['bitmessage']) ? $profile['bitmessage'] : '',
-                              isset($profile['tox'])        ? $profile['tox']        : '');
+                              isset($profile['fullname'])   ? Filter::string($profile['fullname'])   : '',
+                              isset($profile['bio'])        ? Filter::string($profile['bio'])        : '',
+                              isset($profile['location'])   ? Filter::string($profile['location'])   : '',
+                              isset($profile['url'])        ? Filter::string($profile['url'])        : '',
+                              isset($profile['bitmessage']) ? Filter::string($profile['bitmessage']) : '',
+                              isset($profile['tox'])        ? Filter::string($profile['tox'])        : '');
         }
       }
     }
@@ -52,12 +52,12 @@ if (isset($_SESSION['userName'])) {
 
       $profile = [
         'userName'   => $userName,
-        'fullName'   => $profileInfo['fullName'],
-        'location'   => $profileInfo['location'],
-        'url'        => $profileInfo['url'],
-        'bitMessage' => $profileInfo['bitMessage'],
-        'tox'        => $profileInfo['tox'],
-        'bio'        => nl2br($profileInfo['bio']),
+        'fullName'   => Filter::string($profileInfo['fullName']),
+        'location'   => Filter::string($profileInfo['location']),
+        'url'        => Filter::string($profileInfo['url']),
+        'bitMessage' => Filter::string($profileInfo['bitMessage']),
+        'tox'        => Filter::string($profileInfo['tox']),
+        'bio'        => nl2br(Filter::string($profileInfo['bio'])),
       ];
 
       $response = [

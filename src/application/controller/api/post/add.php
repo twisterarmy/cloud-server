@@ -21,7 +21,8 @@ if (isset($_SESSION['userName'])) {
       'message' => _('Could not receive user post')
     ];
 
-  } else if (isset($userPosts[0]['userpost']['k']) && $result = $_twister->newPostMessage($_SESSION['userName'], $userPosts[0]['userpost']['k'] + 1, $_POST['message'])) {
+  } else if (isset($userPosts[0]['userpost']['k']) &&
+             $result = $_twister->newPostMessage($_SESSION['userName'], Filter::int($userPosts[0]['userpost']['k']) + 1, $_POST['message'])) {
 
     $response = [
       'success' => true,
