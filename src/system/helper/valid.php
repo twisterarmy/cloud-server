@@ -39,7 +39,7 @@ class Valid {
       'data:image/webp;base64,',
     ], '', $string);
 
-    if (self::base64($string) && imagecreatefromstring(base64_decode($string))) {
+    if (self::base64($string) && @imagecreatefromstring(base64_decode($string))) {
 
       return true;
 
