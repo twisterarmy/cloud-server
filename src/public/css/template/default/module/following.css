@@ -86,11 +86,15 @@
 .moduleFollowing .item .info .tox,
 .moduleFollowing .item .info .bitMessage {
   display: inline-block;
-  margin: 2px 4px;
   font-size: 10px;
+}
+
+.moduleFollowing .item .info .url a,
+.moduleFollowing .item .info .tox a,
+.moduleFollowing .item .info .bitMessage a {
+  margin: 4px 8px 4px 0;
 }
 
 .moduleFollowing .item .info .tox {
   font-size: 10px;
-  margin: 2px 4px;
 }
