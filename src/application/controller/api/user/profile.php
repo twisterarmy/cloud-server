@@ -28,70 +28,73 @@ if (isset($_SESSION['userName'])) {
         'profile' => $mcProfile
       ];
 
-    /*
-    * Step 2: try to obtain profile from DHT
-    *
-    * */
-    } else if ($dhtProfileRevisions = $_twister->getDHTProfileRevisions($userName)) {
-
-      // Add DHT version if not exists
-      foreach ((array) $dhtProfileRevisions as $dhtProfileRevision) {
-
-        // Save revision into the database if not exists
-        if (!$_modelProfile->versionExists($userId,
-                                           $dhtProfileRevision['height'],
-                                           $dhtProfileRevision['seq'])) {
-
-          $_modelProfile->add($userId,
-                              $dhtProfileRevision['height'],
-                              $dhtProfileRevision['seq'],
-                              $dhtProfileRevision['time'],
-
-                              $dhtProfileRevision['fullName'],
-                              $dhtProfileRevision['bio'],
-                              $dhtProfileRevision['location'],
-                              $dhtProfileRevision['url'],
-                              $dhtProfileRevision['bitMessage'],
-                              $dhtProfileRevision['tox']);
-        }
-      }
-    }
-
-    /*
-    * Step 3: Select latest version available from DB revisions
-    *
-    * */
-    if ($dbProfileRevision = $_modelProfile->get($userId)) {
-
-      // Format output
-      $profile = [
-        'userName'   => $userName,
-        'fullName'   => Format::text($dbProfileRevision['fullName']),
-        'location'   => Format::text($dbProfileRevision['location']),
-        'url'        => Format::text($dbProfileRevision['url']),
-        'bitMessage' => Format::text($dbProfileRevision['bitMessage']),
-        'tox'        => Format::text($dbProfileRevision['tox']),
-        'bio'        => Format::text($dbProfileRevision['bio']),
-      ];
-
-      // Save request into the cache pool
-      $_memcache->set('api.user.profile.' . $userName, $profile, MEMCACHE_COMPRESS, MEMCACHE_DHT_PROFILE_TIMEOUT);
-
-      // Response
-      $response = [
-        'success' => true,
-        'message' => _('Profile successfully received from DHT/DB'),
-        'profile' => $profile
-      ];
-
-    // Cache, DHT, DB not contain any the details about user requested
     } else {
 
-      $response = [
-        'success' => false,
-        'message' => _('Could not receive any profile details'),
-        'profile' => []
-      ];
+      /*
+      * Step 2: try to obtain profile from DHT
+      *
+      * */
+      if ($dhtProfileRevisions = $_twister->getDHTProfileRevisions($userName)) {
+
+        // Add DHT version if not exists
+        foreach ((array) $dhtProfileRevisions as $dhtProfileRevision) {
+
+          // Save revision into the database if not exists
+          if (!$_modelProfile->versionExists($userId,
+                                            $dhtProfileRevision['height'],
+                                            $dhtProfileRevision['seq'])) {
+
+            $_modelProfile->add($userId,
+                                $dhtProfileRevision['height'],
+                                $dhtProfileRevision['seq'],
+                                $dhtProfileRevision['time'],
+
+                                $dhtProfileRevision['fullName'],
+                                $dhtProfileRevision['bio'],
+                                $dhtProfileRevision['location'],
+                                $dhtProfileRevision['url'],
+                                $dhtProfileRevision['bitMessage'],
+                                $dhtProfileRevision['tox']);
+          }
+        }
+      }
+
+      /*
+      * Step 3: Select latest version available from DB revisions
+      *
+      * */
+      if ($dbProfileRevision = $_modelProfile->get($userId)) {
+
+        // Format output
+        $profile = [
+          'userName'   => $userName,
+          'fullName'   => Format::text($dbProfileRevision['fullName']),
+          'location'   => Format::text($dbProfileRevision['location']),
+          'url'        => Format::text($dbProfileRevision['url']),
+          'bitMessage' => Format::text($dbProfileRevision['bitMessage']),
+          'tox'        => Format::text($dbProfileRevision['tox']),
+          'bio'        => Format::text($dbProfileRevision['bio']),
+        ];
+
+        // Save request into the cache pool
+        $_memcache->set('api.user.profile.' . $userName, $profile, MEMCACHE_COMPRESS, MEMCACHE_DHT_PROFILE_TIMEOUT);
+
+        // Response
+        $response = [
+          'success' => true,
+          'message' => _('Profile successfully received from DHT/DB'),
+          'profile' => $profile
+        ];
+
+      // Cache, DHT, DB not contain any the details about user requested
+      } else {
+
+        $response = [
+          'success' => false,
+          'message' => _('Could not receive any profile details'),
+          'profile' => []
+        ];
+      }
     }
 
   // User not found in the local database registry

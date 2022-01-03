@@ -28,73 +28,76 @@ if (isset($_SESSION['userName'])) {
         'avatar'  => $mcAvatar
       ];
 
-    /*
-    * Step 2: try to obtain avatar from DHT
-    *
-    * */
-    } else if ($dhtAvatarRevisions = $_twister->getDHTAvatarRevisions($userName)) {
-
-      // Add DHT version if not exists
-      foreach ((array) $dhtAvatarRevisions as $dhtAvatarRevision) {
-
-        if (!$_modelAvatar->versionExists($userId,
-                                          $dhtAvatarRevision['height'],
-                                          $dhtAvatarRevision['seq'])) {
-
-          $_modelAvatar->add($userId,
-                             $dhtAvatarRevision['height'],
-                             $dhtAvatarRevision['seq'],
-                             $dhtAvatarRevision['time'],
-                             $dhtAvatarRevision['data']);
-        }
-      }
-    }
-
-    /*
-    * Step 3: Select latest version available from DB revisions
-    *
-    * */
-    $dbAvatarRevision = $_modelAvatar->get($userId);
-
-    if ($dbAvatarRevision && Valid::base64image($dbAvatarRevision['data'])) {
-
-      // Response
-      $response = [
-        'success' => true,
-        'message' => _('Avatar successfully received from DHT/DB'),
-        'avatar'  => $dbAvatarRevision['data'] // format
-      ];
-
-      // Save request into the cache pool
-      $_memcache->set('api.user.avatar.' . $userName, $dbAvatarRevision['data'], MEMCACHE_COMPRESS, MEMCACHE_DHT_AVATAR_TIMEOUT);
-
-    // Cache, DHT, DB not contain any the avatar details about user requested,
-    // Generate and return identity icon
     } else {
 
-      // Generate identity icon
-      $fileName = md5($userName);
-      $filePath = PROJECT_DIR . '/cache/image/' . $fileName . '.jpeg';
+      /*
+      * Step 2: try to obtain avatar from DHT
+      *
+      * */
+      if ($dhtAvatarRevisions = $_twister->getDHTAvatarRevisions($userName)) {
 
-      // Identity icons supports file cache
-      if (!file_exists($filePath)) {
+        // Add DHT version if not exists
+        foreach ((array) $dhtAvatarRevisions as $dhtAvatarRevision) {
 
-        $icon  = new Icon();
-        $image = $icon->generateImageResource($fileName, 42, 42, false);
+          if (!$_modelAvatar->versionExists($userId,
+                                            $dhtAvatarRevision['height'],
+                                            $dhtAvatarRevision['seq'])) {
 
-        file_put_contents($filePath, $image);
+            $_modelAvatar->add($userId,
+                              $dhtAvatarRevision['height'],
+                              $dhtAvatarRevision['seq'],
+                              $dhtAvatarRevision['time'],
+                              $dhtAvatarRevision['data']);
+          }
+        }
       }
 
-      $identityIcon = 'data:image/jpeg;base64,' . base64_encode(file_get_contents($filePath));
+      /*
+      * Step 3: Select latest version available from DB revisions
+      *
+      * */
+      $dbAvatarRevision = $_modelAvatar->get($userId);
 
-      $response = [
-        'success' => true,
-        'message' => _('Could not receive any avatar details, generated identity icon'),
-        'avatar'  =>  $identityIcon
-      ];
+      if ($dbAvatarRevision && Valid::base64image($dbAvatarRevision['data'])) {
 
-      // Save identity icon into the cache pool
-      $_memcache->set('api.user.avatar.' . $userName, $identityIcon, MEMCACHE_COMPRESS, MEMCACHE_DHT_AVATAR_TIMEOUT);
+        // Response
+        $response = [
+          'success' => true,
+          'message' => _('Avatar successfully received from DHT/DB'),
+          'avatar'  => $dbAvatarRevision['data'] // format
+        ];
+
+        // Save request into the cache pool
+        $_memcache->set('api.user.avatar.' . $userName, $dbAvatarRevision['data'], MEMCACHE_COMPRESS, MEMCACHE_DHT_AVATAR_TIMEOUT);
+
+      // Cache, DHT, DB not contain any the avatar details about user requested,
+      // Generate and return identity icon
+      } else {
+
+        // Generate identity icon
+        $fileName = md5($userName);
+        $filePath = PROJECT_DIR . '/cache/image/' . $fileName . '.jpeg';
+
+        // Identity icons supports file cache
+        if (!file_exists($filePath)) {
+
+          $icon  = new Icon();
+          $image = $icon->generateImageResource($fileName, 42, 42, false);
+
+          file_put_contents($filePath, $image);
+        }
+
+        $identityIcon = 'data:image/jpeg;base64,' . base64_encode(file_get_contents($filePath));
+
+        $response = [
+          'success' => true,
+          'message' => _('Could not receive any avatar details, generated identity icon'),
+          'avatar'  =>  $identityIcon
+        ];
+
+        // Save identity icon into the cache pool
+        $_memcache->set('api.user.avatar.' . $userName, $identityIcon, MEMCACHE_COMPRESS, MEMCACHE_DHT_AVATAR_TIMEOUT);
+      }
     }
 
   // User not found in the local database registry
