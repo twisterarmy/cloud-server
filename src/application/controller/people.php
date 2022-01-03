@@ -34,7 +34,7 @@ if (isset($_GET['_route_'])) {
     $userName = filter::userName($route[1]);
     $_twister->follow($_SESSION['userName'], [$userName]);
 
-    $pageTitle = sprintf(_('@%s posts'), $userName);
+    $pageTitle = sprintf(_('@%s'), $userName);
   }
 }
 
