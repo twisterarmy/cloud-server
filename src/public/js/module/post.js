@@ -1,8 +1,5 @@
 var ModulePost = {
-  init: function(element) {
-    ModulePost.loadAvatar(element);
-  },
-  loadAvatar: function(element) {
+  loadAvatar: function() {
     $.ajax({
       url: 'api/user/avatar',
       type: 'GET',
@@ -11,7 +8,7 @@ var ModulePost = {
         if (response.success) {
 
           if (response.avatar) {
-            $(element).find('img').attr('src', response.avatar).show();
+            $('#modulePostAvatar').attr('src', response.avatar).show();
           }
 
         } else {
@@ -25,27 +22,57 @@ var ModulePost = {
       }
     });
   },
-  add: function() {
-
-    var input = $('#modulePost .message textarea');
+  send: function() {
 
     $.ajax({
       url: 'api/post/add',
       type: 'POST',
       data: {
-        message: input.val()
+        message: $('#modulePostMessage').val()
       },
       success: function (response) {
 
         if (response.success) {
 
-          input.val('');
+          $('#modulePostMessage').val('');
+          $('#modulePostPreview').hide();
+          $('#modulePostPreview .text').html('');
 
           $(document).trigger('ModulePost.add:success', [response]);
 
         } else {
 
-          alert(response.message);
+          console.log(response.message);
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });
+  },
+  preview: function() {
+
+    $.ajax({
+      url: 'api/post/preview',
+      type: 'POST',
+      data: {
+        message: $('#modulePostMessage').val()
+      },
+      success: function (response) {
+
+        if (response.success) {
+
+          if (response.format == '') {
+            $('#modulePostPreview').hide();
+            $('#modulePostPreview .text').html('');
+          } else {
+            $('#modulePostPreview').show();
+            $('#modulePostPreview .text').html(response.format);
+          }
+
+        } else {
+
+          console.log(response.message);
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -54,3 +81,22 @@ var ModulePost = {
     });
   },
 }
+
+$(document).ready(function() {
+
+  // Init module
+  ModulePost.loadAvatar();
+
+  // Event listeners
+  $(document).on('ModulePost.add:success', function(/*event, response*/) {
+    ModuleFeed.load('#moduleFeed', true);
+  });
+
+  $('#modulePostMessage').on('keyup', function() {
+    ModulePost.preview();
+  });
+
+  $('#modulePostSend').on('click', function() {
+    ModulePost.send();
+  });
+});
