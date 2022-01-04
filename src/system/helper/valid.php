@@ -2,21 +2,6 @@
 
 class Valid {
 
-  public static function userPost(string $userPost) {
-
-    $length = mb_strlen($userPost);
-
-    if ($length < 1 || $length > 140) {
-
-      return false;
-
-    } else {
-
-      return true;
-
-    }
-  }
-
   public static function base64(string $string) {
 
     if (base64_encode(base64_decode($string, true)) === $string) {

@@ -7,22 +7,17 @@ $response = [
 
 if (isset($_SESSION['userName'])) {
 
-  if (!isset($_POST['message']) || (isset($_POST['message']) && !Valid::userPost($_POST['message']))) {
+  if (!$userPosts = $_twister->getPosts([$_SESSION['userName']], 1)) {
 
     $response = [
       'success' => false,
-      'message' => _('Post message must contain from 1 to 140 chars')
-    ];
-
-  } else if (!$userPosts = $_twister->getPosts([$_SESSION['userName']], 1)) {
-
-    $response = [
-      'success' => false,
-      'message' => _('Could not receive user post')
+      'message' => _('Could not receive last user post')
     ];
 
   } else if (isset($userPosts[0]['userpost']['k']) &&
-             $result = $_twister->newPostMessage($_SESSION['userName'], Filter::int($userPosts[0]['userpost']['k']) + 1, $_POST['message'])) {
+             $result = $_twister->newPostMessage($_SESSION['userName'],
+                                                 Filter::int($userPosts[0]['userpost']['k']) + 1,
+                                                 Filter::post($_POST['message']))) {
 
     $response = [
       'success' => true,
