@@ -1,7 +1,7 @@
 .settingsProfile .avatar {
   margin-bottom: 32px;
   padding-bottom: 16px;
-  border-bottom: 1px #4d5666 solid;;
+  border-bottom: 1px #4d5666 solid;
 }
 
 .settingsProfile .avatar img {
@@ -10,6 +10,7 @@
   vertical-align: middle;
   margin-right: 16px;
   width: 42px;
+  display: none
 }
 
 .settingsProfile form {
@@ -62,7 +63,6 @@
   background-color: #337ab7;
   color: #fff;
   border: 0;
-  width: 100%;
 }
 
 .settingsProfile form button:hover {
@@ -70,6 +70,19 @@
 }
 
 .settingsProfile form .actions {
-  text-align: right;
   overflow: hidden;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px #4d5666 solid;;
+}
+
+.settingsProfile form .actions .success {
+  color: #44c508;
+  line-height: 36px;
+}
+
+.settingsProfile form .error {
+  margin-bottom: 16px;
+  color: #ee7575;
+  font-size: 11px;
 }

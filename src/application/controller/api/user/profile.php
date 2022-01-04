@@ -13,6 +13,11 @@ if (isset($_SESSION['userName'])) {
   // Prepare user request, authorized user by default
   $userName = isset($_GET['userName']) ? Filter::userName($_GET['userName']) : $_SESSION['userName'];
 
+  // No cache request
+  if (isset($_GET['nocache'])) {
+      $_memcache->delete('api.user.profile.' . $userName);
+  }
+
   // Check user exists in the database
   if ($userId = $_modelUser->getUserId($userName)) {
 
@@ -41,20 +46,20 @@ if (isset($_SESSION['userName'])) {
 
           // Save revision into the database if not exists
           if (!$_modelProfile->versionExists($userId,
-                                            $dhtProfileRevision['height'],
-                                            $dhtProfileRevision['seq'])) {
+                                             Filter::int($dhtProfileRevision['height']),
+                                             Filter::int($dhtProfileRevision['seq']))) {
 
             $_modelProfile->add($userId,
-                                $dhtProfileRevision['height'],
-                                $dhtProfileRevision['seq'],
-                                $dhtProfileRevision['time'],
+                                Filter::int($dhtProfileRevision['height']),
+                                Filter::int($dhtProfileRevision['seq']),
+                                Filter::int($dhtProfileRevision['time']),
 
-                                $dhtProfileRevision['fullName'],
-                                $dhtProfileRevision['bio'],
-                                $dhtProfileRevision['location'],
-                                $dhtProfileRevision['url'],
-                                $dhtProfileRevision['bitMessage'],
-                                $dhtProfileRevision['tox']);
+                                Filter::fullName($dhtProfileRevision['fullName']),
+                                Filter::bio($dhtProfileRevision['bio']),
+                                Filter::location($dhtProfileRevision['location']),
+                                Filter::url($dhtProfileRevision['url']),
+                                Filter::bitMessage($dhtProfileRevision['bitMessage']),
+                                Filter::tox($dhtProfileRevision['tox']));
           }
         }
       }
@@ -68,12 +73,12 @@ if (isset($_SESSION['userName'])) {
         // Format output
         $profile = [
           'userName'   => $userName,
-          'fullName'   => Format::text($dbProfileRevision['fullName']),
-          'location'   => Format::text($dbProfileRevision['location']),
-          'url'        => Format::text($dbProfileRevision['url']),
-          'bitMessage' => Format::text($dbProfileRevision['bitMessage']),
-          'tox'        => Format::text($dbProfileRevision['tox']),
-          'bio'        => Format::text($dbProfileRevision['bio']),
+          'fullName'   => $dbProfileRevision['fullName'],
+          'location'   => $dbProfileRevision['location'],
+          'url'        => $dbProfileRevision['url'],
+          'bitMessage' => $dbProfileRevision['bitMessage'],
+          'tox'        => $dbProfileRevision['tox'],
+          'bio'        => Format::bio($dbProfileRevision['bio']),
         ];
 
         // Save request into the cache pool

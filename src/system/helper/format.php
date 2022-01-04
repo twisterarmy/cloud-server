@@ -2,6 +2,7 @@
 
 class Format {
 
+  // Common
   public static function plural(int $number, array $texts) {
 
     $cases = [2, 0, 1, 1, 1, 2];
@@ -44,6 +45,24 @@ class Format {
     }
   }
 
+  // Profile
+  public static function bio(string $string) {
+
+    $string = preg_replace("|\*([\S]+)\*|i", "<b>$1</b>", $string);
+    $string = preg_replace("|\~([\S]+)\~|i", "<i>$1</i>", $string);
+    $string = preg_replace("|\_([\S]+)\_|i", "<u>$1</u>", $string);
+    $string = preg_replace("|\-([\S]+)\-|i", "<s>$1</s>", $string);
+    $string = preg_replace("|\`([\S]+)\`|i", "<samp>$1</samp>", $string);
+
+    $string = preg_replace("|@([a-zA-Z0-9_]+)|i", "<a href=\"people/$1\">@$1</a>", $string);
+    $string = preg_replace("|((https?://)+([\d\w\.-]+\.[\w\.]{2,6})[^\s\]\[\<\>]*/?)|i", "<a href=\"$1\" target=\"_blank\">$3</a>", $string);
+
+    $string = nl2br($string);
+
+    return $string;
+  }
+
+  // @TODO REPLACE
   public static function text(string $string) {
 
     $string = html_entity_decode($string, ENT_QUOTES, 'UTF-8');

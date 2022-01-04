@@ -13,6 +13,11 @@ if (isset($_SESSION['userName'])) {
   // Prepare user request, authorized user by default
   $userName = isset($_GET['userName']) ? Filter::userName($_GET['userName']) : $_SESSION['userName'];
 
+  // No cache request
+  if (isset($_GET['nocache'])) {
+      $_memcache->delete('api.user.avatar.' . $userName);
+  }
+
   // Check user exists in the database
   if ($userId = $_modelUser->getUserId($userName)) {
 
@@ -20,6 +25,7 @@ if (isset($_SESSION['userName'])) {
     * Step 1: try to obtain avatar from cache
     *
     * */
+
     if ($mcAvatar = $_memcache->get('api.user.avatar.' . $userName)) {
 
       $response = [
