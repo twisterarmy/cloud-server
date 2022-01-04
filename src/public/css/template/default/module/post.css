@@ -51,6 +51,28 @@
   height: 90px;
 }
 
+.modulePost .preview {
+  color: #ccd3df;
+  font-size: 12px;
+  border-top: 1px #4d5666 solid;
+  display: none;
+}
+
+.modulePost .preview .title {
+  float: left;
+  padding: 16px;
+  width: 78px;
+  text-align: center;
+}
+
+.modulePost .preview .title i {
+  margin: 0 auto
+}
+
+.modulePost .preview .text {
+  padding: 16px 16px 16px 90px;
+}
+
 .modulePost .button {
   float: right;
   padding: 6px 16px;
@@ -64,10 +86,4 @@
 
 .modulePost .button:hover {
   background-color: #437baa
-}
-
-.modulePost .content {
-  background: rgb(89,99,116);
-  border-radius: 3px;
-  padding: 16px;
 }

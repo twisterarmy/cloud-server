@@ -2,7 +2,6 @@ $(document).ready(function() {
 
   // Init modules
   ModuleMenu.init('/');
-  ModulePost.init('#modulePost');
   ModuleFeed.load('#moduleFeed', true);
   //ModuleUsers.load('#moduleUsers', true);
 

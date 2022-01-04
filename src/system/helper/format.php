@@ -45,8 +45,10 @@ class Format {
     }
   }
 
-  // Profile
-  public static function bio(string $string) {
+  public static function post(string $string) {
+
+    $string = html_entity_decode($string, ENT_QUOTES, 'UTF-8');
+    $string = htmlentities($string, ENT_QUOTES, 'UTF-8');
 
     $string = preg_replace("|([\s])\*([\S]+)\*([\s]?)|i", "$1<b>$2</b>$3", $string);
     $string = preg_replace("|([\s])\~([\S]+)\~([\s]?)|i", "$1<i>$2</i>$3", $string);
