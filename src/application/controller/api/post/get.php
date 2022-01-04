@@ -28,14 +28,14 @@ if (isset($_SESSION['userName'])) {
     foreach ($result as $post) {
 
       // Split message parts
-      $messages = [Filter::string($post['userpost']['msg'])];
+      $messages = [Filter::post($post['userpost']['msg'])];
 
       for ($i = 0; $i <= APPLICATION_MAX_POST_SPLIT; $i++) {
 
         $n = sprintf('msg%s', $i);
 
         if (isset($post['userpost'][$n])) {
-          $messages[] = Filter::string($post['userpost'][$n]);
+          $messages[] = Filter::post($post['userpost'][$n]);
         }
       }
 
@@ -44,14 +44,14 @@ if (isset($_SESSION['userName'])) {
       if (isset($post['userpost']['rt'])) {
 
         // Split reTwists parts
-        $reTwists = [Filter::string($post['userpost']['rt']['msg'])];
+        $reTwists = [Filter::post($post['userpost']['rt']['msg'])];
 
         for ($i = 0; $i <= APPLICATION_MAX_POST_SPLIT; $i++) {
 
           $n = sprintf('msg%s', $i);
 
           if (isset($post['userpost']['rt'][$n])) {
-            $reTwists[] = Filter::string($post['userpost']['rt'][$n]);
+            $reTwists[] = Filter::post($post['userpost']['rt'][$n]);
           }
         }
 

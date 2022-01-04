@@ -79,24 +79,4 @@ class Format {
 
     return $string;
   }
-
-  // @TODO REPLACE
-  public static function text(string $string) {
-
-    $string = html_entity_decode($string, ENT_QUOTES, 'UTF-8');
-    $string = htmlentities($string, ENT_QUOTES, 'UTF-8');
-
-    $string = preg_replace("|([\s])\*([\S]+)\*([\s]?)|i", "$1<b>$2</b>$3", $string);
-    $string = preg_replace("|([\s])\~([\S]+)\~([\s]?)|i", "$1<i>$2</i>$3", $string);
-    $string = preg_replace("|([\s])\_([\S]+)\_([\s]?)|i", "$1<u>$2</u>$3", $string);
-    $string = preg_replace("|([\s])\-([\S]+)\-([\s]?)|i", "$1<s>$2</s>$3", $string);
-    $string = preg_replace("|([\s])\`([\S]+)\`([\s]?)|i", "$1<samp>$2</samp>$3", $string);
-
-    $string = preg_replace("|@([a-zA-Z0-9_]+)|i", "<a href=\"people/$1\">@$1</a>", $string);
-    $string = preg_replace("|((https?://)+([\d\w\.-]+\.[\w\.]{2,6})[^\s\]\[\<\>]*/?)|i", "<a href=\"$1\" target=\"_blank\">$3</a>", $string);
-
-    $string = nl2br($string);
-
-    return $string;
-  }
 }
