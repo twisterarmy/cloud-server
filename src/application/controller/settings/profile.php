@@ -142,7 +142,7 @@ if (isset($_POST) && !empty($_POST)) {
                         MEMCACHE_COMPRESS,
                         MEMCACHE_DHT_PROFILE_TIMEOUT);
 
-    $successMessage = _('Profile successfully saved!');
+    $successMessage = _('Profile successfully updated!');
   }
 }
 
