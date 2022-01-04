@@ -68,7 +68,7 @@ class Filter {
 
   public static function bio(string $string) {
 
-    $string = preg_replace('/[^\s\w\.\,\:\;\@\#\=\-\_\~\*\/\(\)\[\]\<\>\"\']+/u', '', $string);
+    $string = preg_replace('/[^\s\w\.\,\:\;\@\?\!\+\`\&\^\%\#\=\-\_\~\*\/\(\)\[\]\<\>\"\']+/u', '', $string);
 
     $string = mb_substr($string, 0, 500);
 
@@ -77,7 +77,7 @@ class Filter {
 
   public static function post(string $string) {
 
-    $string = preg_replace('/[^\s\w\.\,\:\;\@\#\=\-\_\~\*\/\(\)\[\]\<\>\"\']+/u', '', $string);
+    $string = preg_replace('/[^\s\w\.\,\:\;\@\?\!\+\`\&\^\%\#\=\-\_\~\*\/\(\)\[\]\<\>\"\']+/u', '', $string);
 
     $string = mb_substr($string, 0, 140);
 
