@@ -78,7 +78,7 @@ if (isset($_SESSION['userName'])) {
           'url'        => $dbProfileRevision['url'],
           'bitMessage' => $dbProfileRevision['bitMessage'],
           'tox'        => $dbProfileRevision['tox'],
-          'bio'        => Format::bio($dbProfileRevision['bio']),
+          'bio'        => isset($_GET['format']) ? Format::bio($dbProfileRevision['bio']) : $dbProfileRevision['bio'],
         ];
 
         // Save request into the cache pool

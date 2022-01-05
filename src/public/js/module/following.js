@@ -73,6 +73,7 @@ var ModuleFollowing = {
       url: 'api/user/profile',
       type: 'GET',
       data: {
+        format: true,
         userName: userName
       },
       success: function (response) {
