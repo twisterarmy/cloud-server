@@ -1,5 +1,12 @@
 <?php
 
+// Load dependencies
+$metaStyles = [
+  'css/template/default/login.css',
+];
+
+$metaScripts = [];
+
 // Define variables
 $userName            = false;
 $userPrivateKey      = false;

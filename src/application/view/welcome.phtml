@@ -1,20 +1,12 @@
 <?php include(PROJECT_DIR . '/application/controller/common/header/guest.php') ?>
-<div class="mw-1024 mx-auto of-hidden">
-  <div class="mw-360 mx-auto my-100 bg-c-4 b-r-3 py-28 px-24">
-    <h1 class="f-size-20 f-normal mb-20"><?php echo _('Welcome') ?></h1>
-    <div>
-      <div class="mb-20">
-        <?php echo sprintf(_('Account <strong class="c-7">@%s</strong> in registration!'), $userName); ?>
-      </div>
-      <div class="mb-20">
-        <?php echo sprintf(_('Please, wait for block %s to enter the twister and keep the secret key in safety place:'), $blockEstimated); ?>
-      </div>
-      <div class="mb-30">
-        <pre class="f-size-9 c-4 px-8 py-16 b-r-3 b-c-5 b-2 t-center d-block"><?php echo $userPrivateKey; ?></pre>
-      </div>
-    </div>
-    <div class="mt-4">
-      <a class="btn btn-1 d-inline-block" href="login"><?php echo _('Login') ?></a>
+<div class="container">
+  <div class="register">
+    <h1><?php echo _('Welcome') ?></h1>
+    <p><?php echo sprintf(_('Account <strong class="username">@%s</strong> in registration!'), $userName); ?></p>
+    <p><?php echo sprintf(_('Please, wait for block %s to enter the twister and keep the secret key in safety place:'), $blockEstimated); ?></p>
+    <pre class="key"><?php echo $userPrivateKey; ?></pre>
+    <div class="actions">
+      <a class="button" href="login"><?php echo _('Login') ?></a>
     </div>
   </div>
 </div>

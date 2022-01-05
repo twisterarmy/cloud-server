@@ -1,4 +1,8 @@
 * {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
   -moz-transition: all .4s ease-in;
   -o-transition: all .4s ease-in;
   /* issue #2
@@ -9,27 +13,99 @@
 :focus {outline:none;}
 ::-moz-focus-inner {border:0;}
 
+body {
+  color: #fff;
+  background-image: url('/css/template/default/image/bg-1.png');
+  background-color: #4A5466;
+  font-family: Roboto-Regular, Sans-Serif, Verdana;
+  font-size: 14px;
+}
+
 a,
 a:visited,
 a:active {
-  color: #fff
+  color: #fff;
+  text-decoration: none;
+}
+
+table {
+  border-spacing: 0
 }
 
 input[type="text"],
+input[type="password"],
 textarea {
   padding: 9px 16px;
   width: 100%;
   border-radius: 3px;
   background: rgb(238, 238, 238);
+  border: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  overflow: hidden;
+  color: #96a0b4;
+  background-image: url('/css/template/default/image/bg-2.png');
+  background-color: #111;
+  margin-bottom: 14px
+}
+
+.header .container .left {
+  float: left;
+  height: 48px;
+  line-height: 48px;
+}
+
+.header .container .left a.logo,
+.header .container .left a.logo:active,
+.header .container .left a.logo:visited {
+  color: #96a0b4;
+  font-size: 18px;
+}
+
+.header .container .left a.logo:hover {
+  color: #fff;
+}
+
+.header .container .right {
+  float: right;
+  height: 48px;
+  line-height: 48px;
+  text-align: right;
+}
+
+.header .container .right a.menu,
+.header .container .right a.menu:active,
+.header .container .right a.menu:visited {
+  color: #96a0b4;
+  margin-left: 12px;
+}
+
+.header .container .right a.menu:hover {
+  color: #fff;
+}
+
+.footer {
+  color: #9ba5af;
+  text-align: center;
+}
+
+.footer p:last-child {
+  margin-top: 20px
+}
+
+.footer a,
+.footer a:active,
+.footer a:visited {
+  color: #fff;
 }
 
 .container {
   max-width: 1024px;
-  margin: 16px auto;
+  margin: 0 auto;
   padding: 0 16px;
   overflow: hidden;
-  position: relative;
-  margin-bottom: 64px
 }
 
 .container > .right {

@@ -7,25 +7,26 @@
   <meta name="description" content="Twisterarmy Cloud is the open source web interface to interact twister network without node installation." />
   <link rel="stylesheet" type="text/css" href="css/template/default/font.css" />
   <link rel="stylesheet" type="text/css" href="css/template/default/bi.css" />
-  <link rel="stylesheet" type="text/css" href="css/template/default/common.css" />
   <link rel="stylesheet" type="text/css" href="css/template/default/app.css" />
-  <link rel="stylesheet" type="text/css" href="css/template/default/mobile.css" />
+  <link rel="stylesheet" type="text/css" href="css/template/default/mobile.css?v=3" />
+  <?php foreach ($metaStyles as $metaStyle) { ?>
+  <link rel="stylesheet" type="text/css" href="<?php echo $metaStyle ?>" />
+  <?php } ?>
   <script src="js/jquery.js"></script>
+  <?php foreach ($metaScripts as $metaScript) { ?>
+  <script src="<?php echo $metaScript ?>"></script>
+  <?php } ?>
 </head>
-<body class="bg-c-1 bg-img-1 c-0">
-  <div class="bg-c-2 bg-img-2 c-1 of-hidden">
-    <div class="mw-1024 mx-auto">
-      <div class="nav float-left h-48 lh-48">
-        <div class="px-16">
-          <a class="c-1 f-size-18" href="/">Twisterarmy <i><?php echo _('Cloud') ?></i></a>
-        </div>
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="left">
+        <a class="logo" href="/">Twisterarmy <i><?php echo _('Cloud') ?></i></a>
       </div>
-      <div class="nav bg-c-2 bg-img-2 float-right t-right h-48 lh-48">
-        <div class="px-16">
-          <small><?php echo sprintf(_('Network status: %s users in %s blocks'), $usersTotal, $blocksTotal) ?></small>
-          <a class="c-1 ml-16" href="https://github.com/twisterarmy/cloud-server" target="_blank"><i class="bi bi-github"></i></a>
-          <a class="c-1 ml-16" href="https://github.com/twisterarmy/cloud-server/issues" target="_blank"><i class="bi bi-question-circle"></i></a>
-        </div>
+      <div class="right">
+        <small><?php echo sprintf(_('Network status: %s users in %s blocks'), $usersTotal, $blocksTotal) ?></small>
+        <a class="menu" href="https://github.com/twisterarmy/cloud-server" target="_blank"><i class="bi bi-github"></i></a>
+        <a class="menu" href="https://github.com/twisterarmy/cloud-server/issues" target="_blank"><i class="bi bi-question-circle"></i></a>
       </div>
     </div>
   </div>

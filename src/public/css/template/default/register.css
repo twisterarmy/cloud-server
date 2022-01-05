@@ -1,0 +1,73 @@
+.register {
+  border-radius: 3px;
+  padding: 28px 24px;
+  margin: 100px auto;
+  background-color: #272E39;
+  width: 360px;
+}
+
+.register h1 {
+  margin-bottom: 20px;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.register input {
+  margin-bottom: 22px;
+}
+
+.register p {
+  margin-bottom: 16px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.register .error {
+  margin-bottom: 22px;
+  color: #e86060;
+}
+
+.register .actions a,
+.register .actions a:active,
+.register .actions a:visited {
+  color: #96a0b4;
+  margin-left: 16px;
+}
+
+.register .actions a:hover {
+  color: #fff;
+}
+
+.register .username {
+  color: #44c508;
+}
+
+.register .key {
+  color: #44c508;
+  font-size: 9px;
+  text-align: center;
+  height: 36px;
+  line-height: 36px;
+  display: block;
+  overflow: auto;
+  margin-bottom: 22px;
+}
+
+.register .actions .button {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 16px;
+  font-size: 13px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #337ab7;
+  color: #fff!important;
+  margin: 0;
+  display: inline-block
+}
+
+.register .actions .button:hover {
+  background-color: #437baa;
+  margin: 0;
+}

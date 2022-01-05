@@ -1,0 +1,49 @@
+.login {
+  border-radius: 3px;
+  padding: 28px 24px;
+  margin: 100px auto;
+  background-color: #272E39;
+  width: 360px;
+}
+
+.login h1 {
+  margin-bottom: 20px;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.login input {
+  margin-bottom: 22px;
+}
+
+.login .error {
+  margin-bottom: 22px;
+  color: #e86060;
+}
+
+.login .actions a,
+.login .actions a:active,
+.login .actions a:visited {
+  color: #96a0b4;
+  margin-left: 16px;
+}
+
+.login .actions a:hover {
+  color: #fff;
+}
+
+.login .actions .button {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 16px;
+  font-size: 13px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #337ab7;
+  color: #fff;
+  border: 0;
+}
+
+.login .actions .button:hover {
+  background-color: #437baa;
+}

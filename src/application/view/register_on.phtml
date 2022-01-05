@@ -1,15 +1,15 @@
 <?php include(PROJECT_DIR . '/application/controller/common/header/guest.php') ?>
-<div class="mw-1024 mx-auto of-hidden">
-  <div class="mw-360 mx-auto my-100 bg-c-4 b-r-3 py-28 px-24">
-    <h1 class="f-size-20 f-normal mb-20"><?php echo _('Register') ?></h1>
+<div class="container">
+  <div class="register">
+    <h1><?php echo _('Register') ?></h1>
     <form action="register" name="register" method="POST">
-      <input type="text" name="userName" value="<?php echo $userName ?>" placeholder="<?php echo _('Username') ?>" class="input-text mb-22" />
+      <input type="text" name="userName" value="<?php echo $userName ?>" placeholder="<?php echo _('Username') ?>" />
       <?php if ($errorUserName) { ?>
-      <div class="c-5 mb-22"><?php echo $errorUserName ?></div>
+      <div class="error"><?php echo $errorUserName ?></div>
       <?php } ?>
-      <div class="mt-4">
-        <button type="submit" class="btn btn-1"><?php echo sprintf(_('~ %s'), $blockEstimated) ?></button>
-        <a class="c-1 ml-16" href="login"><?php echo _('Login') ?></a>
+      <div class="actions">
+        <button class="button" type="submit"><?php echo sprintf(_('~ %s'), $blockEstimated) ?></button>
+        <a href="login"><?php echo _('Login') ?></a>
       </div>
     </form>
   </div>
