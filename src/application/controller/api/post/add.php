@@ -7,17 +7,20 @@ $response = [
 
 if (isset($_SESSION['userName'])) {
 
-  if (!$userPosts = $_twister->getPosts([$_SESSION['userName']], 1)) {
+  // Get post index
+  $postK = 1;
 
-    $response = [
-      'success' => false,
-      'message' => _('Could not receive last user post')
-    ];
+  if ($userPosts = $_twister->getPosts([$_SESSION['userName']], 1)) {
 
-  } else if (isset($userPosts[0]['userpost']['k']) &&
-             $result = $_twister->newPostMessage($_SESSION['userName'],
-                                                 Filter::int($userPosts[0]['userpost']['k']) + 1,
-                                                 Filter::post($_POST['message']))) {
+    if (isset($userPosts[0]['userpost']['k'])) {
+      $postK = Filter::int($userPosts[0]['userpost']['k']) + 1;
+    }
+
+  }
+
+  if ($postK && $result = $_twister->newPostMessage($_SESSION['userName'],
+                                                    $postK,
+                                                    Filter::post($_POST['message']))) {
 
     $response = [
       'success' => true,
