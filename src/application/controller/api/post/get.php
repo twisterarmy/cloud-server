@@ -4,9 +4,12 @@ $response = [
   'success' => false,
   'message' => _('Internal server error'),
   'posts'   => [],
+  'page'    => 0,
 ];
 
 if (isset($_SESSION['userName'])) {
+
+  $page = isset($_GET['page']) ? Filter::int($_GET['page']) : 1;
 
   $userNames = [];
 
@@ -22,10 +25,14 @@ if (isset($_SESSION['userName'])) {
     }
   }
 
-  if ($result = $_twister->getPosts($userNames, APPLICATION_MAX_POST_FEED)) {
+  if ($result = $_twister->getPosts($userNames, APPLICATION_MAX_POST_FEED * $page)) {
 
+    $postsTotal = 0;
     $posts = [];
     foreach ($result as $post) {
+
+      // Count posts
+      $postsTotal++;
 
       // Process reTwists
       $reTwist = [];
@@ -50,7 +57,8 @@ if (isset($_SESSION['userName'])) {
     $response = [
       'success' => true,
       'message' => _('Posts successfully loaded'),
-      'posts'   => $posts
+      'posts'   => $posts,
+      'page'    => $postsTotal == $page * APPLICATION_MAX_POST_FEED ? $page + 1 : 0
     ];
 
   } else {
@@ -59,6 +67,7 @@ if (isset($_SESSION['userName'])) {
       'success' => false,
       'message' => _('Could not receive post data'),
       'posts'   => [],
+      'page'    => 0
     ];
   }
 
@@ -67,6 +76,7 @@ if (isset($_SESSION['userName'])) {
     'success' => false,
     'message' => _('Session expired'),
     'posts'   => [],
+    'page'    => 0
   ];
 }
 

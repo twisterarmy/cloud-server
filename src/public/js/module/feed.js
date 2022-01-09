@@ -97,11 +97,12 @@ var ModuleFeed = {
       }
     });
   },
-  load: function(feed, reFresh) {
+  load: function(feed, page, reFresh) {
     $.ajax({
       url: 'api/post/get',
       type: 'GET',
       data: {
+        page: page,
         userName: $(feed).data('username')
       },
       success: function (response) {
@@ -115,6 +116,15 @@ var ModuleFeed = {
             ModuleFeed.template.feed.item.append(feed, this);
             ModuleFeed.loadAvatar(feed, this.userName);
           });
+
+          if (response.page > 0) {
+            $(feed).append(
+              $('<div/>', {
+                'class': 'loadMore',
+                'onclick': 'ModuleFeed.load(\'' + feed + '\', ' + response.page + ', true)'
+              }).text('More')
+            );
+          }
 
         } else {
 
