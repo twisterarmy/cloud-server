@@ -63,10 +63,10 @@ var ModulePost = {
         if (response.success) {
 
           if (response.format == '') {
-            $('#modulePostPreview').hide();
+            $('#modulePostPreview').removeClass('active');
             $('#modulePostPreview .text').html('');
           } else {
-            $('#modulePostPreview').show();
+            $('#modulePostPreview').addClass('active');
             $('#modulePostPreview .text').html(response.format);
           }
 
@@ -89,7 +89,7 @@ $(document).ready(function() {
 
   // Event listeners
   $(document).on('ModulePost.add:success', function(/*event, response*/) {
-    ModuleFeed.load('#moduleFeed', true);
+    ModuleFeed.load('#moduleFeed', 1, true);
   });
 
   $('#modulePostMessage').on('keyup', function() {
