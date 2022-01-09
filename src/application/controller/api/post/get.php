@@ -27,46 +27,22 @@ if (isset($_SESSION['userName'])) {
     $posts = [];
     foreach ($result as $post) {
 
-      // Split message parts
-      $messages = [Filter::post($post['userpost']['msg'])];
-
-      for ($i = 0; $i <= APPLICATION_MAX_POST_SPLIT; $i++) {
-
-        $n = sprintf('msg%s', $i);
-
-        if (isset($post['userpost'][$n])) {
-          $messages[] = Filter::post($post['userpost'][$n]);
-        }
-      }
-
       // Process reTwists
       $reTwist = [];
-      if (isset($post['userpost']['rt'])) {
-
-        // Split reTwists parts
-        $reTwists = [Filter::post($post['userpost']['rt']['msg'])];
-
-        for ($i = 0; $i <= APPLICATION_MAX_POST_SPLIT; $i++) {
-
-          $n = sprintf('msg%s', $i);
-
-          if (isset($post['userpost']['rt'][$n])) {
-            $reTwists[] = Filter::post($post['userpost']['rt'][$n]);
-          }
-        }
+      if ($post['reTwist']) {
 
         $reTwist = [
-          'message'  => Format::post(implode('', $reTwists)),
-          'time'     => Format::time(Filter::int($post['userpost']['rt']['time'])),
-          'userName' => Filter::userName($post['userpost']['rt']['n']),
-          'reTwist'  => $reTwist,
+          'message'  => Format::post($post['reTwist']['message']),
+          'time'     => Format::time($post['reTwist']['time']),
+          'userName' => $post['reTwist']['userName'],
         ];
       }
 
+      // Process posts
       $posts[] = [
-        'message'  => Format::post(implode('', $messages)),
-        'time'     => Format::time(Filter::int($post['userpost']['time'])),
-        'userName' => Filter::userName($post['userpost']['n']),
+        'message'  => Format::post($post['message']),
+        'time'     => Format::time($post['time']),
+        'userName' => $post['userName'],
         'reTwist'  => $reTwist,
       ];
     }

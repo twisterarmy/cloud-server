@@ -135,13 +135,84 @@ class Twister {
 
     if ($response = $this->_curl->execute()) {
 
+      $messages = [];
+
       if ($response['error']) {
 
         $this->_error = _($response['error']['message']);
 
       } else {
 
-        return $response['result']; // Array
+        // Format response
+        if (isset($response['result'])) {
+
+          foreach ($response['result'] as $message) {
+
+            if (isset($message['userpost']['height']) &&
+                isset($message['userpost']['k']) &&
+                isset($message['userpost']['time']) &&
+                isset($message['userpost']['n']) &&
+                isset($message['userpost']['msg'])) {
+
+                // Process reTwist if exist
+                $reTwist = [];
+                if (isset($message['userpost']['rt']) &&
+
+                    isset($message['userpost']['rt']['height']) &&
+                    isset($message['userpost']['rt']['k']) &&
+                    isset($message['userpost']['rt']['time']) &&
+                    isset($message['userpost']['rt']['msg']) &&
+                    isset($message['userpost']['rt']['n'])) {
+
+                  // Split reTwist parts
+                  $reTwists = [Filter::post($message['userpost']['rt']['msg'])];
+
+                  for ($i = 0; $i <= APPLICATION_MAX_POST_SPLIT; $i++) {
+
+                    $n = sprintf('msg%s', $i);
+
+                    if (isset($message['userpost']['rt'][$n])) {
+                      $reTwists[] = Filter::post($message['userpost']['rt'][$n]);
+                    }
+                  }
+
+                  $reTwist = [
+                    'height'   => Filter::int($message['userpost']['rt']['height']),
+                    'k'        => Filter::int($message['userpost']['rt']['k']),
+                    'time'     => Filter::int($message['userpost']['rt']['time']),
+
+                    'userName' => Filter::userName($message['userpost']['rt']['n']),
+                    'message'  => implode('', $reTwists),
+                  ];
+                }
+
+                // Split message parts
+                $messageParts = [Filter::post($message['userpost']['msg'])];
+
+                for ($i = 0; $i <= APPLICATION_MAX_POST_SPLIT; $i++) {
+
+                  $n = sprintf('msg%s', $i);
+
+                  if (isset($message['userpost'][$n])) {
+                    $messageParts[] = Filter::post($message['userpost'][$n]);
+                  }
+                }
+
+                $messages[] = [
+                  'height'   => Filter::int($message['userpost']['height']),
+                  'k'        => Filter::int($message['userpost']['k']),
+                  'time'     => Filter::int($message['userpost']['time']),
+
+                  'userName' => Filter::userName($message['userpost']['n']),
+                  'message'  => implode('', $messageParts),
+
+                  'reTwist'  => $reTwist
+                ];
+            }
+          }
+        }
+
+        return $messages; // Array
       }
     }
 
