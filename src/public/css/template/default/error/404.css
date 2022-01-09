@@ -1,0 +1,14 @@
+.error404 {
+  border-radius: 3px;
+  padding: 36px 16px;
+  margin: 100px auto;
+  background-color: #272E39;
+  width: 360px;
+  text-align: center;
+}
+
+.error404 h1 {
+  margin-bottom: 20px;
+  font-weight: normal;
+  font-size: 36px;
+}
