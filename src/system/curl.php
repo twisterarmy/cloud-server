@@ -61,7 +61,7 @@ class Curl {
     }
 
     if ($method == 'POST' && $postFields) {
-      curl_setopt($this->_curl, CURLOPT_POSTFIELDS, json_encode($postFields));
+      curl_setopt($this->_curl, CURLOPT_POSTFIELDS, json_encode($postFields, JSON_UNESCAPED_UNICODE));
     }
   }
 
