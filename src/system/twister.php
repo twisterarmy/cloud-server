@@ -423,6 +423,7 @@ class Twister {
     return [];
   }
 
+  /* Unused
   public function getDHT(string $userName, string $command, string $flag) {
 
     $this->_curl->prepare(
@@ -455,6 +456,7 @@ class Twister {
 
     return false;
   }
+  */
 
   public function putDHT(string $peerAlias,
                          string $command,
