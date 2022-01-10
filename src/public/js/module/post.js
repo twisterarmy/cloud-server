@@ -35,7 +35,7 @@ var ModulePost = {
         if (response.success) {
 
           $('#modulePostMessage').val('');
-          $('#modulePostPreview').hide();
+          $('#modulePostPreview').removeClass('active');
           $('#modulePostPreview .text').html('');
 
           $(document).trigger('ModulePost.add:success', [response]);
@@ -88,10 +88,6 @@ $(document).ready(function() {
   ModulePost.loadAvatar();
 
   // Event listeners
-  $(document).on('ModulePost.add:success', function(/*event, response*/) {
-    ModuleFeed.load('#moduleFeed', 1, true);
-  });
-
   $('#modulePostMessage').on('keyup', function() {
     ModulePost.preview();
   });

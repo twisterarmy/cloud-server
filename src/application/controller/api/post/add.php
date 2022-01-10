@@ -12,8 +12,8 @@ if (isset($_SESSION['userName'])) {
 
   if ($userPosts = $_twister->getPosts([$_SESSION['userName']], 1)) {
 
-    if (isset($userPosts[0]['userpost']['k'])) {
-      $postK = Filter::int($userPosts[0]['userpost']['k']) + 1;
+    if (isset($userPosts[0]['k'])) {
+      $postK = Filter::int($userPosts[0]['k']) + 1;
     }
 
   }
@@ -24,7 +24,7 @@ if (isset($_SESSION['userName'])) {
 
     $response = [
       'success' => true,
-      'message' => _('Post successfully sent')
+      'message' => $postK
     ];
 
   } else {
