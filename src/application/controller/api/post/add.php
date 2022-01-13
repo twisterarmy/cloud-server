@@ -17,10 +17,16 @@ if (isset($_SESSION['userName'])) {
     }
 
   }
+  if (!isset($_POST['message'])) {
 
-  if ($postK && $result = $_twister->newPostMessage($_SESSION['userName'],
-                                                    $postK,
-                                                    Filter::post($_POST['message']))) {
+    $response = [
+      'success' => false,
+      'message' => _('Message required')
+    ];
+
+  } else if ($postK && $result = $_twister->newPostMessage($_SESSION['userName'],
+                                                           $postK,
+                                                           Filter::post($_POST['message']))) {
 
     $response = [
       'success' => true,
