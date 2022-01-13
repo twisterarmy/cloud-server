@@ -24,7 +24,7 @@ if (isset($_SESSION['userName'])) {
 
     $response = [
       'success' => true,
-      'message' => $postK
+      'message' => _('Post successfully sent')
     ];
 
   } else {
