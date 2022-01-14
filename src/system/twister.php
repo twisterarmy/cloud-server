@@ -135,7 +135,7 @@ class Twister {
 
     if ($response = $this->_curl->execute()) {
 
-      $messages = [];
+      $posts = [];
 
       if ($response['error']) {
 
@@ -143,79 +143,18 @@ class Twister {
 
       } else {
 
-        // Format response
+        // Filter response values
         if (isset($response['result'])) {
-
-          foreach ($response['result'] as $message) {
-
-            if (isset($message['userpost']['height']) &&
-                isset($message['userpost']['k']) &&
-                isset($message['userpost']['time']) &&
-                isset($message['userpost']['n']) &&
-                isset($message['userpost']['msg'])) {
-
-                // Process reTwist if exist
-                $reTwist = [];
-                if (isset($message['userpost']['rt']) &&
-
-                    isset($message['userpost']['rt']['height']) &&
-                    isset($message['userpost']['rt']['k']) &&
-                    isset($message['userpost']['rt']['time']) &&
-                    isset($message['userpost']['rt']['msg']) &&
-                    isset($message['userpost']['rt']['n'])) {
-
-                  // Split reTwist parts
-                  $reTwists = [Filter::post($message['userpost']['rt']['msg'])];
-
-                  for ($i = 0; $i <= APPLICATION_MAX_POST_SPLIT; $i++) {
-
-                    $n = sprintf('msg%s', $i);
-
-                    if (isset($message['userpost']['rt'][$n])) {
-                      $reTwists[] = Filter::post($message['userpost']['rt'][$n]);
-                    }
-                  }
-
-                  $reTwist = [
-                    'height'   => Filter::int($message['userpost']['rt']['height']),
-                    'k'        => Filter::int($message['userpost']['rt']['k']),
-                    'time'     => Filter::int($message['userpost']['rt']['time']),
-
-                    'userName' => Filter::userName($message['userpost']['rt']['n']),
-                    'message'  => implode('', $reTwists),
-                  ];
-                }
-
-                // Split message parts
-                $messageParts = [Filter::post($message['userpost']['msg'])];
-
-                for ($i = 0; $i <= APPLICATION_MAX_POST_SPLIT; $i++) {
-
-                  $n = sprintf('msg%s', $i);
-
-                  if (isset($message['userpost'][$n])) {
-                    $messageParts[] = Filter::post($message['userpost'][$n]);
-                  }
-                }
-
-                $messages[] = [
-                  'height'   => Filter::int($message['userpost']['height']),
-                  'k'        => Filter::int($message['userpost']['k']),
-                  'time'     => Filter::int($message['userpost']['time']),
-
-                  'userName' => Filter::userName($message['userpost']['n']),
-                  'message'  => implode('', $messageParts),
-
-                  'reTwist'  => $reTwist
-                ];
-            }
+          foreach ($response['result'] as $post) {
+            $posts[] = Filter::userPost($post);
           }
         }
 
-        return $messages; // Array
+        return $posts;
       }
     }
 
+    // False, when something was wrong
     return false;
   }
 
@@ -561,7 +500,8 @@ class Twister {
     return false;
   }
 
-  public function newPostMessage(string $userName, int $index, string $message) {
+  // newpostmsg <username> <k> <msg> [reply_n] [reply_k]
+  public function newPostMessage(string $userName, int $k, string $message) {
 
     $this->_curl->prepare(
       '/',
@@ -572,8 +512,49 @@ class Twister {
         'method'  => 'newpostmsg',
         'params'  => [
           $userName,
-          $index,
+          $k,
           $message
+        ],
+        'id' => time() + rand()
+      ]
+    );
+
+    if ($response = $this->_curl->execute()) {
+
+      if ($response['error']) {
+
+        $this->_error = _($response['error']['message']);
+
+      } else {
+
+        return $response['result']; // transaction ID
+      }
+    }
+
+    return false;
+  }
+
+  // newrtmsg <username> <k> <rt_v_object> [comment]
+  // rt_v_object:
+  // "sig_userpost":string,
+  // "userpost":{"height":int,"k":int,"lastk":int,"msg":string,"n":string,"time":int}}"'
+  public function newRetwistMessage(string $userName, int $k, string $sigUserPost, array $userPost, string $comment) {
+
+    $this->_curl->prepare(
+      '/',
+      'POST',
+      30,
+      [
+        'jsonrpc' => '2.0',
+        'method'  => 'newrtmsg',
+        'params'  => [
+          $userName,
+          $k,
+          [
+            'sig_userpost' => $sigUserPost,
+            'userpost'     => $userPost,
+          ],
+          $comment
         ],
         'id' => time() + rand()
       ]
