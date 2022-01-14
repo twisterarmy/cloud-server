@@ -84,7 +84,7 @@ class Filter {
 
     $string = preg_replace('/[^\s\w\.\,\:\;\@\?\!\+\`\&\^\%\#\=\-\_\~\*\/\(\)\[\]\<\>\"\']+/u', '', (string) $string);
 
-    $string = mb_substr($string, 0, 140);
+    $string = mb_substr($string, 0, 256);
 
     return $string;
   }
