@@ -105,33 +105,45 @@ class Filter {
     foreach ((array) $userPost as $key => $value) {
 
       switch ($key) {
-        case 'height':
-          $result[$key] = self::int($value);
-        break;
-        case 'time':
-          $result[$key] = self::int($value);
-        break;
-        case 'k':
-          $result[$key] = self::int($value);
-        break;
-        case 'lastk':
-          $result[$key] = self::int($value);
-        break;
-        case 'n':
-          $result[$key] = self::userName($value);
-        break;
-        case 'msg':
-          $result[$key] = self::post($value);
-        break;
-        case 'msg2':
-          $result[$key] = self::post($value);
-        break;
-        case 'sig_rt':
+        case 'sig_userpost':
           $result[$key] = self::sigUserPost($value);
         break;
-        case 'rt':
+        case 'userpost':
           $result[$key] = self::userPost($value);
         break;
+        default:
+          switch ($key) {
+            case 'height':
+              $result[$key] = self::int($value);
+            break;
+            case 'time':
+              $result[$key] = self::int($value);
+            break;
+            case 'k':
+              $result[$key] = self::int($value);
+            break;
+            case 'lastk':
+              $result[$key] = self::int($value);
+            break;
+            case 'n':
+              $result[$key] = self::userName($value);
+            break;
+            case 'msg':
+              $result[$key] = self::post($value);
+            break;
+            case 'msg2':
+              $result[$key] = self::post($value);
+            break;
+            case 'sig_rt':
+              $result[$key] = self::sigUserPost($value);
+            break;
+            case 'rt':
+              $result[$key] = self::userPost($value);
+            break;
+            case 'reply':
+              $result[$key] = self::userPost($value);
+            break;
+          }
       }
     }
 
