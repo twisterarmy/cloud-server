@@ -8,7 +8,8 @@
   color: #1c1d1e;
   background: rgb(238, 238, 238);
   border-radius: 3px;
-  min-height: 84px;
+  cursor: pointer;
+  /*min-height: 84px;*/
 }
 
 .moduleFeed .item a,
@@ -63,6 +64,25 @@
 .moduleFeed .item .message .info a:hover,
 .moduleFeed .item .message .info a:visited {
   color: #1c1d1e;
+}
+
+.moduleFeed .item .actions {
+  opacity: 0;
+  text-align: right;
+  margin-top: 8px
+}
+.moduleFeed .item:hover .actions {
+  opacity: 1
+}
+
+.moduleFeed .item .actions span {
+  cursor: pointer;
+  margin-left: 8px;
+  color: #5b646f
+}
+
+.moduleFeed .item .actions span:hover {
+  color: #1c1d1e
 }
 
 .moduleFeed .loadMore {

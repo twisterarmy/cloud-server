@@ -29,7 +29,8 @@ var ModuleFeed = {
           $(feed).append(
             $('<div/>', {
               'class': 'item',
-              'data-username': item.userName,
+              'data-user-name': item.userName,
+              'data-meta': item.meta
             }).append(
               $('<div/>', {
                 'class': 'avatar'
@@ -65,6 +66,22 @@ var ModuleFeed = {
                   'class': (item.message != '' ? 'quote' : '')
                 }).append(item.message)
               )
+            ).append(
+              $('<div/>', {
+                'class': 'actions'
+              }).append(
+                $('<span/>', {
+                  'class': 'bi bi-reply-fill',
+                  'title': 'Reply',
+                  'onclick': 'ModuleFeed.reply($(this).closest(\'.item\').data(\'meta\'))'
+                })
+              ).append(
+                $('<span/>', {
+                  'class': 'bi bi-quote',
+                  'title': 'Quote',
+                  'onclick': 'ModuleFeed.retwist($(this).closest(\'.item\').data(\'meta\'))'
+                })
+              )
             )
           );
         }
@@ -83,7 +100,7 @@ var ModuleFeed = {
         if (response.success) {
 
           if (response.avatar) {
-            $(feed).find('div[data-username="' + userName + '"] .avatar img').attr('src', response.avatar).show();
+            $(feed).find('div[data-user-name="' + userName + '"] .avatar img').attr('src', response.avatar).show();
           }
 
         } else {
