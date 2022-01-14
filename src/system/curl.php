@@ -80,7 +80,7 @@ class Curl {
 
     if ($response) {
       if ($json) {
-        return json_decode($response, true);
+        return json_decode($response, true, 512, JSON_INVALID_UTF8_IGNORE);
       } else {
         return $response;
       }
